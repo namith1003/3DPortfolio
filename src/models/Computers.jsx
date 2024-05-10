@@ -22,7 +22,7 @@ const Computers = ({isRotating, setIsRotating, ...props}) => {
 
     const lastX = useRef(0);
     const rotationSpeed = useRef(0);
-    const dampingFactor = 0.8;
+    const dampingFactor = 0.95;
 
     const handlePointerDown = (e) => {
         e.stopPropagation();
@@ -53,6 +53,16 @@ const Computers = ({isRotating, setIsRotating, ...props}) => {
             computerRef.current.rotation.y += delta * 0.01 * Math.PI;
             lastX.current = clientX;
             rotationSpeed.current = delta * 0.01 * Math.PI;
+            if (computerRef.current.rotation.y > 0.6) {
+                computerRef.current.rotation.y = 0.6;
+                rotationSpeed.current = 0;
+            } else if (computerRef.current.rotation.y < -0.6) {
+                computerRef.current.rotation.y = -0.6;
+                rotationSpeed.current = 0;
+            }
+            
+
+            
         }
     }
 
@@ -80,6 +90,13 @@ const Computers = ({isRotating, setIsRotating, ...props}) => {
         if (!isRotating) {
         // Apply damping factor
         rotationSpeed.current *= dampingFactor;
+        if (computerRef.current.rotation.y > 0.6) {
+            computerRef.current.rotation.y = 0.6;
+            rotationSpeed.current = 0;
+        } else if (computerRef.current.rotation.y < -0.6) {
+            computerRef.current.rotation.y = -0.6;
+            rotationSpeed.current = 0;
+        }
 
         // Stop rotation when speed is very small
         if (Math.abs(rotationSpeed.current) < 0.001) {
@@ -307,13 +324,7 @@ const Computers = ({isRotating, setIsRotating, ...props}) => {
         rotation={[-1.236, -0.719, 0.48]}
         scale={0.5}
       />
-      <mesh
-        
-        
-        geometry={nodes.Object_14.geometry}
-        material={materials['Material.001']}
-        scale={13}
-      />
+
       <mesh
         
         

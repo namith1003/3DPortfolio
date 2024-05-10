@@ -10,7 +10,7 @@ const [isRotating, setIsRotating] = useState(false);
 
     const adjustComputersForScreenSize = () => {
         let screenScale = null;
-        let screenPosition = [0,-4, -10];
+        let screenPosition = [0,-4,-4];
         let rotation = [0,0,0];
 
         if(window.innerWidth < 768){
