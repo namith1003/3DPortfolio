@@ -23,7 +23,25 @@ const [isRotating, setIsRotating] = useState(false);
         return [screenScale, screenPosition, rotation];
     }
 
+    const adjustPlaneForScreenSize = () => {
+        let screenScale = null;
+        let screenPosition = null;
+        let rotation = [0,0,0];
+
+        if(window.innerWidth < 768){
+            screenScale = [1.5,1.5,1.5];
+            screenPosition = [0,-1.5,0];
+        } else {
+            screenScale = [3, 3, 3];
+            screenPosition = [1, -4, -4];
+        }
+
+        return [screenScale, screenPosition];
+    }
+
     const [computersScale, computersPosition, computersRotation] = adjustComputersForScreenSize();
+    const [planeScale, planePosition] = adjustComputersForScreenSize();
+
   return (
     <section className='w-full h-screen relative'>
         {/* <div className='absolute top-28 left-0 right-0 z-10 flex items-center justify-center'>
@@ -38,7 +56,7 @@ const [isRotating, setIsRotating] = useState(false);
                 <Shark/>
                 <Matrix/>
                 <Computers position = {computersPosition} scale = {computersScale} rotation = {computersRotation} isRotating={isRotating} setIsRotating={setIsRotating}/>
-                <Plane/>
+                <Plane planeScale = {planeScale} planePosition = {planePosition} rotation = {[0,20,0]}/>
 
             </Suspense>
 
