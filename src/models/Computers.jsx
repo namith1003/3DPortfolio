@@ -17,7 +17,7 @@ import computerScene from '../assets/3d/computers.glb';
 const Computers = ({isRotating, setIsRotating, ...props}) => {
     const computerRef = useRef();
 
-    const {gl, viewport} = userThree();
+    const {gl, viewport} = useThree();
     const { nodes, materials } = useGLTF(computerScene);
 
     const lastX = useRef(0);
@@ -25,7 +25,7 @@ const Computers = ({isRotating, setIsRotating, ...props}) => {
     const dampingFactor = 0.95;
 
     const handlePointerDown = (e) => {
-        e.stopProgation();
+        e.stopPropagation();
         e.preventDefault();
         setIsRotating(true);
 
@@ -35,36 +35,35 @@ const Computers = ({isRotating, setIsRotating, ...props}) => {
     }
 
     const handlePointerUp = (e) => {
-        e.stopProgation();
+        e.stopPropagation();
         e.preventDefault();
         setIsRotating(false);
 
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    
-        const delta = (clientX - lastX.current)/viewport.width;
-
-        islandRef.current.rotation.y = islandRef.current.rotation.y + delta * 0.01 * Math.PI;
-        lastX.current = clientX;
-        rotationSpeed.current = delta * 0.01 * Math.PI;
     }
 
     const handlePointerMove = (e) => {
-        e.stopProgation();
+        e.stopPropagation();
         e.preventDefault();
         setIsRotating(true);
 
         if (isRotating) {
-            handlePointerUp(e);
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        
+            const delta = (clientX - lastX.current)/viewport.width;
+
+            computerRef.current.rotation.y = computerRef.current.rotation.y + delta * 0.01 * Math.PI;
+            lastX.current = clientX;
+            rotationSpeed.current = delta * 0.01 * Math.PI;
         }
     }
 
     const handleKeyDown = (e) => {
         if (e.key === 'ArrowLeft') {
             if (!isRotating) setIsRotating(true);
-            islandRef.current.rotation.y = islandRef.current.rotation.y + 0.01 * Math.PI;
+            computerRef.current.rotation.y = computerRef.current.rotation.y + 0.01 * Math.PI;
         } else if (e.key === 'ArrowRight') {
             if (!isRotating) setIsRotating(true);
-            islandRef.current.rotation.y = islandRef.current.rotation.y - 0.01 * Math.PI;
+            computerRef.current.rotation.y = computerRef.current.rotation.y - 0.01 * Math.PI;
         }
     }
 
@@ -86,10 +85,10 @@ const Computers = ({isRotating, setIsRotating, ...props}) => {
             rotationSpeed.current = 0;
         }
 
-        islandRef.current.rotation.y += rotationSpeed.current;
+        computerRef.current.rotation.y += rotationSpeed.current;
         } else {
-        // When rotating, determine the current stage based on island's orientation
-        const rotation = islandRef.current.rotation.y;
+        // When rotating, determine the current stage based on computer's orientation
+        const rotation = computerRef.current.rotation.y;
 
         /**
          * Normalize the rotation value to ensure it stays within the range [0, 2 * Math.PI].
@@ -110,7 +109,7 @@ const Computers = ({isRotating, setIsRotating, ...props}) => {
         const normalizedRotation =
             ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 
-        // Set the current stage based on the island's orientation
+        // Set the current stage based on the computers's orientation
         switch (true) {
             case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
             setCurrentStage(4);
@@ -138,9 +137,7 @@ const Computers = ({isRotating, setIsRotating, ...props}) => {
         canvas.addEventListener("pointermove", handlePointerMove);
         window.addEventListener("keydown", handleKeyDown);
         window.addEventListener("keyup", handleKeyUp);
-        canvas.addEventListener("touchstart", handleTouchStart);
-        canvas.addEventListener("touchend", handleTouchEnd);
-        canvas.addEventListener("touchmove", handleTouchMove);
+
     
         // Remove event listeners when component unmounts
         return () => {
@@ -149,9 +146,6 @@ const Computers = ({isRotating, setIsRotating, ...props}) => {
           canvas.removeEventListener("pointermove", handlePointerMove);
           window.removeEventListener("keydown", handleKeyDown);
           window.removeEventListener("keyup", handleKeyUp);
-          canvas.removeEventListener("touchstart", handleTouchStart);
-          canvas.removeEventListener("touchend", handleTouchEnd);
-          canvas.removeEventListener("touchmove", handleTouchMove);
         };
       }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
 
