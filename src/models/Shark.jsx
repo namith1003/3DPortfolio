@@ -6,7 +6,7 @@ import { useGLTF } from '@react-three/drei';
 const Shark = () => {
     const {scene, animations} = useGLTF(sharkScene);
   return (
-    <mesh position = {[0.5,0.5,2]} scale = {[1,1,1]}>
+    <mesh>
         <primitive object={scene} />
     </mesh>
   )

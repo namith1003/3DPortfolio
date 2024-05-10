@@ -3,8 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import Loader from '../components/Loader'
 import Computers from '../models/Computers'
 import Matrix from '../models/Matrix'
-import Shark from '../models/Shark'
-import Plane from '../models/Plane'
+import Plane from '../models/Shark'
 
 const Home = () => {
 const [isRotating, setIsRotating] = useState(false);
@@ -26,7 +25,6 @@ const [isRotating, setIsRotating] = useState(false);
     const adjustPlaneForScreenSize = () => {
         let screenScale = null;
         let screenPosition = null;
-        let rotation = [0,0,0];
 
         if(window.innerWidth < 768){
             screenScale = [1.5,1.5,1.5];
@@ -52,11 +50,9 @@ const [isRotating, setIsRotating] = useState(false);
             <Suspense fallback = {<Loader/>}>
                 <directionalLight/>
                 <ambientLight intensity = {1}/>
-
-                <Shark/>
                 <Matrix/>
                 <Computers position = {computersPosition} scale = {computersScale} rotation = {computersRotation} isRotating={isRotating} setIsRotating={setIsRotating}/>
-                <Plane planeScale = {planeScale} planePosition = {planePosition} rotation = {[0,20,0]}/>
+                <Plane planeScale = {planeScale} planePosition = {planePosition} rotation = {[0,0,0]}/>
 
             </Suspense>
 

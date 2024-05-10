@@ -22,7 +22,7 @@ const Computers = ({isRotating, setIsRotating, ...props}) => {
 
     const lastX = useRef(0);
     const rotationSpeed = useRef(0);
-    const dampingFactor = 0.95;
+    const dampingFactor = 0.8;
 
     const handlePointerDown = (e) => {
         e.stopPropagation();
@@ -44,14 +44,13 @@ const Computers = ({isRotating, setIsRotating, ...props}) => {
     const handlePointerMove = (e) => {
         e.stopPropagation();
         e.preventDefault();
-        setIsRotating(true);
 
         if (isRotating) {
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
         
             const delta = (clientX - lastX.current)/viewport.width;
 
-            computerRef.current.rotation.y = computerRef.current.rotation.y + delta * 0.01 * Math.PI;
+            computerRef.current.rotation.y += delta * 0.01 * Math.PI;
             lastX.current = clientX;
             rotationSpeed.current = delta * 0.01 * Math.PI;
         }
@@ -60,10 +59,12 @@ const Computers = ({isRotating, setIsRotating, ...props}) => {
     const handleKeyDown = (e) => {
         if (e.key === 'ArrowLeft') {
             if (!isRotating) setIsRotating(true);
-            computerRef.current.rotation.y = computerRef.current.rotation.y + 0.01 * Math.PI;
+            computerRef.current.rotation.y += 0.005 * Math.PI;
+            rotationSpeed.current = 0.007;
         } else if (e.key === 'ArrowRight') {
             if (!isRotating) setIsRotating(true);
-            computerRef.current.rotation.y = computerRef.current.rotation.y - 0.01 * Math.PI;
+            computerRef.current.rotation.y -= 0.005 * Math.PI;
+            rotationSpeed.current = -0.007;
         }
     }
 
@@ -109,23 +110,7 @@ const Computers = ({isRotating, setIsRotating, ...props}) => {
         const normalizedRotation =
             ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 
-        // Set the current stage based on the computers's orientation
-        switch (true) {
-            case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
-            setCurrentStage(4);
-            break;
-            case normalizedRotation >= 0.85 && normalizedRotation <= 1.3:
-            setCurrentStage(3);
-            break;
-            case normalizedRotation >= 2.4 && normalizedRotation <= 2.6:
-            setCurrentStage(2);
-            break;
-            case normalizedRotation >= 4.25 && normalizedRotation <= 4.75:
-            setCurrentStage(1);
-            break;
-            default:
-            setCurrentStage(null);
-        }
+       
         }
     });
 
