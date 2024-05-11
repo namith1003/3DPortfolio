@@ -14,7 +14,7 @@ export default function Computer() {
             <Environment preset='warehouse'/>
             <PresentationControls global polar={[-0.1,0.1]} azimuth={[-0.1,0.1]} rotation={[0.3,-0.9,0]}>
                 <primitive object={scene} position= {[4,0.5,3]} >
-                    <Html wrapperClass='monitor' position={[-1.9056,1.245,-0.47]} transform rotation={[1.56, 1.66, -1.56]} distanceFactor={0.24}>
+                    <Html wrapperClass='monitor' position={[-1.9056,1.24355,-0.47]} transform rotation={[1.56, 1.66, -1.56]} distanceFactor={0.24}>
                         <iframe src= "https://treshan.me"/>
                     </Html>
                 </primitive> 
