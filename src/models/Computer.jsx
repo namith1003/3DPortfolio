@@ -11,7 +11,7 @@ export default function Computer() {
         <>
             <Environment preset='warehouse'/>
             <PresentationControls global polar={[-0.4,0.2]} azimuth={[-0.4,0.2]}>
-                <primitive object={scene} position= {[0,-3,-2]}>
+                <primitive object={scene} position= {[0.3,-3.5,0]}>
                     <Html>
                         <iframe src= "https://treshan.me"/>
                     </Html>

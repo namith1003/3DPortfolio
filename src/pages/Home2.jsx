@@ -46,7 +46,7 @@ const [isRotating, setIsRotating] = useState(false);
             POPUP
         </div> */}
 
-        <Canvas className={`w-full h-screen bg-transparent ${isRotating ? 'cursor-grabbing' : 'cursor-grab'}`} camera={{near: 0.1, far: 1000}}>
+        <Canvas colorManagement={false} className={`w-full h-screen bg-transparent ${isRotating ? 'cursor-grabbing' : 'cursor-grab'}`} camera={{near: 0.1, far: 1000}}>
             <Suspense fallback = {<Loader/>}>
                 <directionalLight/>
                 <ambientLight intensity = {1}/>
