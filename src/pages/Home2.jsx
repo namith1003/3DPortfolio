@@ -1,7 +1,7 @@
 import React, { Suspense, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import Loader from '../components/Loader'
-import Computers from '../models/Computers'
+import Computers from '../models/Computer'
 import Matrix from '../models/Matrix'
 import Plane from '../models/Shark'
 
