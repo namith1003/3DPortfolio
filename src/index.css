@@ -13,6 +13,12 @@ body {
   font-family: "Work Sans", sans-serif;
 }
 
+.monitor iframe {
+  width: 1200px;
+  height: 715px;
+  position: absolute;
+}
+
 body:has(.card[data-color="blue"]:hover) {
   background-color: rgb(var(--blue-rgb) / 25%);
 }
