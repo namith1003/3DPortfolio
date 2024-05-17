@@ -8,7 +8,7 @@ import create from 'zustand';
 import {useFrame, useThree} from '@react-three/fiber'
 
 const useStore = create(set => ({
-    position: [0, 0, 10],
+    position: [0, 0, 0],
     setPosition: position => set({ position })
 }))
 
@@ -35,12 +35,6 @@ const Home = () => {
             </Canvas>
 
             <div className="absolute bottom-0 right-0 m-4 z-10 flex items-end">
-                {/* Circular Button */}
-                <button className="bg-black text-white rounded-full w-24 h-24 flex items-center justify-center mr-2" onClick={() => setPosition([0, 100, 200])}>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M6 5a1 1 0 011-1h3.586a1 1 0 01.707.293l4.707 4.707a1 1 0 010 1.414l-4.707 4.707a1 1 0 01-1.414-1.414L9.086 11H7a1 1 0 01-1-1V6a1 1 0 011-1z" clipRule="evenodd" />
-                    </svg>
-                </button>
 
                 {/* Content */}
                 <div className="space-y-2">

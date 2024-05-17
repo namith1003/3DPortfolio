@@ -16,29 +16,37 @@ export default function Computer() {
     const raycaster = new THREE.Raycaster();
 
     const { scene } = useGLTF(computerScene);
-    const [position, setPosition] = useState([0, 0, 0]);
-    const [targetPosition, setTargetPosition] = useState([0, 0, 0]);
+    const [targetPosition, setTargetPosition] = useState([4, 0.5, 3]);
+    const [targetRotation, setTargetRotation] = useState([0,0,0]);
+    const [isRotatable, setRotation] = useState(true);
 
     const controlsRef = useRef();
 
     // Function to handle mesh clicks
-    const handleMeshClick = (newPosition) => {
+    const handleMeshClick = (newPosition, newRotation) => {
         setTargetPosition(newPosition);
+        setTargetRotation(newRotation);
+        setRotation(false);
     };
 
     useEffect(() => {
-        console.log('position', position);
         if (controlsRef.current) {
-          gsap.to(controlsRef.current.position, { x: targetPosition[0], y: targetPosition[1], z: targetPosition[2], duration: 1 });
+          gsap.to(controlsRef.current.position, { x: targetPosition[0], y: targetPosition[1], z: targetPosition[2], duration: 1});
         }
       }, [targetPosition]);
+
+      useEffect(() => {
+        if (controlsRef.current) {
+          gsap.to(controlsRef.current.rotation, { x: targetRotation[0], y: targetRotation[1], z: targetRotation[2], duration: 1});
+        }
+      }, [targetRotation]);
     
 
     return (
         <>
             <Environment preset='warehouse'/>
-            <PresentationControls global polar={[-0.1,0.1]} azimuth={[-0.1,0.1]} rotation={[0.3,-0.9,0]} >
-            <group ref={controlsRef} onClick={() => handleMeshClick([1, 1, 1])}>
+            <PresentationControls global polar={[-0.1,0.1]} azimuth={[-0.1,0.1]} rotation={[0.3,-0.9,0]} enabled = {isRotatable}>
+            <group ref={controlsRef} onClick={() => handleMeshClick([4.575, 0.685, 4.73], [0,-0.667,0.17])}>
                     <Html wrapperClass='monitor' position={[-1.9065,1.246,-0.47]} transform rotation={[1.56, 1.66, -1.56]} distanceFactor={0.241} >
                         <iframe src= "https://treshan.me"/>
                     </Html>
