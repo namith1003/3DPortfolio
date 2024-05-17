@@ -16,6 +16,22 @@ export default function Computer() {
     const raycaster = new THREE.Raycaster();
 
     const { scene } = useGLTF(computerScene);
+    const [position, setPosition] = useState([0, 0, 0]);
+    const [targetPosition, setTargetPosition] = useState([0, 0, 0]);
+
+    const controlsRef = useRef();
+
+    // Function to handle mesh clicks
+    const handleMeshClick = (newPosition) => {
+        setTargetPosition(newPosition);
+    };
+
+    useEffect(() => {
+        console.log('position', position);
+        if (controlsRef.current) {
+          gsap.to(controlsRef.current.position, { x: targetPosition[0], y: targetPosition[1], z: targetPosition[2], duration: 1 });
+        }
+      }, [targetPosition]);
     
 
     return (
