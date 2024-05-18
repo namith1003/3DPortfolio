@@ -15,7 +15,8 @@ const useStore = create(set => ({
 function MyCameraReactsToStateChanges() {
     const [x, y, z] = useStore(state => state.position)
     useFrame(state => {
-        state.camera.lookAt(0, 0, 0)
+        state.camera.position.set(0,1,0)
+        state.camera.rotation.set(0,0,0)
     })
 }
 

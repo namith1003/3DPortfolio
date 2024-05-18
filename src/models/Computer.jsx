@@ -16,14 +16,16 @@ export default function Computer() {
     const raycaster = new THREE.Raycaster();
 
     const { scene } = useGLTF(computerScene);
-    const [targetPosition, setTargetPosition] = useState([4, 0.5, 3]);
-    const [targetRotation, setTargetRotation] = useState([0,0,0]);
+    const [targetPosition, setTargetPosition] = useState([0,0,0]);
+    const [targetRotation, setTargetRotation] = useState([0,-Math.PI/2 + 0.5,0]);
+    const [matrixRotation, setMatrixRotation] = useState([0,0,0]);
     const [isRotatable, setRotation] = useState(true);
 
     const controlsRef = useRef();
 
     // Function to handle mesh clicks
-    const handleMeshClick = (newPosition, newRotation) => {
+    const handleMeshClick = (newPosition, newRotation, newMatrix) => {
+        setMatrixRotation(newMatrix);
         setTargetPosition(newPosition);
         setTargetRotation(newRotation);
         setRotation(false);
@@ -31,6 +33,7 @@ export default function Computer() {
 
     useEffect(() => {
         if (controlsRef.current) {
+            
           gsap.to(controlsRef.current.position, { x: targetPosition[0], y: targetPosition[1], z: targetPosition[2], duration: 1});
         }
       }, [targetPosition]);
@@ -45,13 +48,165 @@ export default function Computer() {
     return (
         <>
             <Environment preset='warehouse'/>
-            <PresentationControls global polar={[-0.1,0.1]} azimuth={[-0.1,0.1]} rotation={[0.3,-0.9,0]} enabled = {isRotatable}>
-            <group ref={controlsRef} onClick={() => handleMeshClick([4.575, 0.685, 4.73], [0,-0.667,0.17])}>
+            <PresentationControls polar={[0, 0]} snap={true} cursor={true} rotation={matrixRotation} enabled = {isRotatable}>
+            <group ref={controlsRef}>
                     <Html wrapperClass='monitor' position={[-1.9065,1.246,-0.47]} transform rotation={[1.56, 1.66, -1.56]} distanceFactor={0.241} >
                         <iframe src= "https://treshan.me"/>
                     </Html>
                 <group rotation={[-Math.PI / 2, 0, 0]} scale={1.147}>
                     <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+
+                    <group  onClick={() => handleMeshClick([0, 0, 0], [0,0,0], [0,0,0])}>
+
+                        {/* desk */}
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Cube010_Material006_0.geometry}
+                            material={materials['Material.006']}
+                            position={[-151.435, 57.371, -82.081]}
+                            rotation={[-Math.PI / 2, 0, 0]}
+                            scale={[35.812, 74.826, 1.39]}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Cube011_Material009_0.geometry}
+                            material={materials['Material.009']}
+                            position={[-122.201, 31.805, -13.913]}
+                            rotation={[-Math.PI / 2, 0.128, 0]}
+                            scale={[0.77, 0.763, 24.607]}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Cube012_Material009_0.geometry}
+                            material={materials['Material.009']}
+                            position={[-122.201, 31.805, -150.567]}
+                            rotation={[-Math.PI / 2, 0.128, 0]}
+                            scale={[0.77, 0.763, 24.607]}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Cube013_Material009_0.geometry}
+                            material={materials['Material.009']}
+                            position={[-178.355, 31.805, -150.567]}
+                            rotation={[-Math.PI / 2, -0.128, -Math.PI]}
+                            scale={[0.77, 0.763, 24.607]}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Cube014_Material009_0.geometry}
+                            material={materials['Material.009']}
+                            position={[-178.355, 31.805, -10.063]}
+                            rotation={[-Math.PI / 2, -0.128, -Math.PI]}
+                            scale={[0.77, 0.763, 24.607]}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Cube016_Material020_0.geometry}
+                            material={materials['Material.020']}
+                            position={[-152.305, 50.124, -127.51]}
+                            rotation={[-Math.PI / 2, 0, 0]}
+                            scale={[35.812, 18.766, 5.555]}
+                        />
+
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Sphere001_Material016_0.geometry}
+                            material={materials['Material.016']}
+                            position={[-116, 50.235, -127.632]}
+                            rotation={[-Math.PI / 2, 0, 0]}
+                            scale={1.339}
+                        />
+                        {/* monitor */}
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Cube015_Material005_0.geometry}
+                            material={materials['Material.005']}
+                            position={[458.185, 86.41, -72.675]}
+                            rotation={[-Math.PI / 2, -0.099, 0]}
+                            scale={[1.143, 32.389, 19.896]}
+                        />
+                        
+                        {/* cpu */}
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Cube017_Material004_0.geometry}
+                            material={materials['Material.004']}
+                            position={[-155.062, 78.67, -134.159]}
+                            rotation={[-Math.PI / 2, 0, 0]}
+                            scale={[20.776, 8.169, 19.965]}
+                        />
+                        
+                        {/* keyboard */}
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Cube018_Material007_0.geometry}
+                            material={materials['Material.007']}
+                            position={[-138.826, 58.987, -72.257]}
+                            rotation={[-Math.PI / 2, 0, 0]}
+                            scale={[9.881, 25.314, 0.722]}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Cube029_Material008_0.geometry}
+                            material={materials['Material.008']}
+                            position={[-139.029, 58.355, -72.257]}
+                            rotation={[-Math.PI / 2, 0, 0]}
+                            scale={[9.881, 25.314, 0.722]}
+                        />
+
+                        {/* chair */}
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Cube027_Material044_0.geometry}
+                            material={materials['Material.044']}
+                            position={[-107.432, 36.706, -90.177]}
+                            rotation={[-Math.PI / 2, 0, 0.5]}
+                            scale={[18.608, 19.096, 1.655]}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Cylinder001_Material025_0.geometry}
+                            material={materials['Material.025']}
+                            position={[-107.444, 33.388, -90.384]}
+                            rotation={[-Math.PI / 2, 0, 0.5]}
+                            scale={[9.638, 9.638, 1.74]}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Cube028_Material044_0.geometry}
+                            material={materials['Material.044']}
+                            position={[-92.385, 63.879, -100.177]}
+                            rotation={[0, Math.PI / 2 + 0.5, 0]}
+                            scale={[18.608, 23.729, 1.655]}
+                        />
+
+                        {/* dustbin */}
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Cylinder002_Material015_0.geometry}
+                            material={materials['Material.015']}
+                            position={[-172.286, 20.975, 6.082]}
+                            rotation={[-Math.PI / 2, 0, 0]}
+                            scale={13.202}
+                        />
+                    </group>
+                    
+                    {/* floor and walls */}
                     <mesh
                         castShadow
                         receiveShadow
@@ -60,6 +215,25 @@ export default function Computer() {
                         rotation={[-Math.PI / 2, 0, 0]}
                         scale={[200, 500, 200]}
                     />
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.Cube_Material_0.geometry}
+                        material={materials.Material}
+                        rotation={[Math.PI/2 ,0   , 0]}
+                        position={[0,200,0]}
+                        scale={[200, 500, 200]}
+                    />
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.Cube_Material_0.geometry}
+                        material={materials.Material}
+                        rotation={[-Math.PI / 2, 0, Math.PI ]}
+                        scale={[200, 500, 200]}
+                    />
+
+                    {/* door */}
                     <mesh
                         castShadow
                         receiveShadow
@@ -78,6 +252,8 @@ export default function Computer() {
                         rotation={[-Math.PI / 2, 0, 0]}
                         scale={2.337}
                     />
+                    
+                    {/* bed and ac and bedside table */}
                     <mesh
                         castShadow
                         receiveShadow
@@ -150,96 +326,8 @@ export default function Computer() {
                         rotation={[-Math.PI / 2, 0, 0]}
                         scale={18.794}
                     />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.Cube010_Material006_0.geometry}
-                        material={materials['Material.006']}
-                        position={[-151.435, 57.371, -82.081]}
-                        rotation={[-Math.PI / 2, 0, 0]}
-                        scale={[35.812, 74.826, 1.39]}
-                    />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.Cube011_Material009_0.geometry}
-                        material={materials['Material.009']}
-                        position={[-122.201, 31.805, -13.913]}
-                        rotation={[-Math.PI / 2, 0.128, 0]}
-                        scale={[0.77, 0.763, 24.607]}
-                    />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.Cube012_Material009_0.geometry}
-                        material={materials['Material.009']}
-                        position={[-122.201, 31.805, -150.567]}
-                        rotation={[-Math.PI / 2, 0.128, 0]}
-                        scale={[0.77, 0.763, 24.607]}
-                    />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.Cube013_Material009_0.geometry}
-                        material={materials['Material.009']}
-                        position={[-178.355, 31.805, -150.567]}
-                        rotation={[-Math.PI / 2, -0.128, -Math.PI]}
-                        scale={[0.77, 0.763, 24.607]}
-                    />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.Cube014_Material009_0.geometry}
-                        material={materials['Material.009']}
-                        position={[-178.355, 31.805, -10.063]}
-                        rotation={[-Math.PI / 2, -0.128, -Math.PI]}
-                        scale={[0.77, 0.763, 24.607]}
-                    />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.Cube015_Material005_0.geometry}
-                        material={materials['Material.005']}
-                        position={[458.185, 86.41, -72.675]}
-                        rotation={[-Math.PI / 2, -0.099, 0]}
-                        scale={[1.143, 32.389, 19.896]}
-                    />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.Cube016_Material020_0.geometry}
-                        material={materials['Material.020']}
-                        position={[-152.305, 50.124, -127.51]}
-                        rotation={[-Math.PI / 2, 0, 0]}
-                        scale={[35.812, 18.766, 5.555]}
-                    />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.Sphere001_Material016_0.geometry}
-                        material={materials['Material.016']}
-                        position={[-116, 50.235, -127.632]}
-                        rotation={[-Math.PI / 2, 0, 0]}
-                        scale={1.339}
-                    />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.Cube017_Material004_0.geometry}
-                        material={materials['Material.004']}
-                        position={[-155.062, 78.67, -134.159]}
-                        rotation={[-Math.PI / 2, 0, 0]}
-                        scale={[20.776, 8.169, 19.965]}
-                    />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.Cube018_Material007_0.geometry}
-                        material={materials['Material.007']}
-                        position={[-138.826, 58.987, -72.257]}
-                        rotation={[-Math.PI / 2, 0, 0]}
-                        scale={[9.881, 25.314, 0.722]}
-                    />
+
+                    {/* shelf */}
                     <mesh
                         castShadow
                         receiveShadow
@@ -330,33 +418,11 @@ export default function Computer() {
                         rotation={[-1.834, 0.423, -0.349]}
                         scale={0.591}
                     />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.Cube027_Material044_0.geometry}
-                        material={materials['Material.044']}
-                        position={[-107.432, 36.706, -90.177]}
-                        rotation={[-Math.PI / 2, 0, 0.5]}
-                        scale={[18.608, 19.096, 1.655]}
-                    />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.Cylinder001_Material025_0.geometry}
-                        material={materials['Material.025']}
-                        position={[-107.444, 33.388, -90.384]}
-                        rotation={[-Math.PI / 2, 0, 0.5]}
-                        scale={[9.638, 9.638, 1.74]}
-                    />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.Cube028_Material044_0.geometry}
-                        material={materials['Material.044']}
-                        position={[-92.385, 63.879, -100.177]}
-                        rotation={[0, Math.PI / 2 + 0.5, 0]}
-                        scale={[18.608, 23.729, 1.655]}
-                    />
+
+                    
+
+
+                    {/* beanbag */}
                     <mesh
                         castShadow
                         receiveShadow
@@ -366,15 +432,10 @@ export default function Computer() {
                         rotation={[-Math.PI / 2, 0, 0]}
                         scale={35.853}
                     />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.Cylinder002_Material015_0.geometry}
-                        material={materials['Material.015']}
-                        position={[-172.286, 20.975, 6.082]}
-                        rotation={[-Math.PI / 2, 0, 0]}
-                        scale={13.202}
-                    />
+                    
+                    
+                    
+                    {/* lamp */}
                     <mesh
                         castShadow
                         receiveShadow
@@ -411,6 +472,8 @@ export default function Computer() {
                         rotation={[-Math.PI / 2, 0, 0]}
                         scale={5.539}
                     />
+
+                    {/* floor lining */}
                     <mesh
                         castShadow
                         receiveShadow
@@ -447,6 +510,8 @@ export default function Computer() {
                         rotation={[-Math.PI / 2, 0, 0]}
                         scale={[196.791, 176.291, 186.209]}
                     />
+
+
                     <mesh
                         castShadow
                         receiveShadow
