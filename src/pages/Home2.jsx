@@ -39,14 +39,14 @@ const Home = () => {
 
                 {/* Content */}
                 <div className="space-y-2">
-                    <div className="bg-black text-white p-2 text-xl font-bold text-center">
+                    <div className="bg-black text-white p-2 text-3xl font-bold text-center">
                         Namith Nimlaka
                     </div>
                     <div className="flex space-x-2">
-                        <div className="bg-black text-white p-2 text-sm">
+                        <div className="bg-black text-white p-2 text-lg">
                             Software Engineer
                         </div>
-                        <div className="bg-black text-white p-2 text-sm">
+                        <div className="bg-black text-white p-2 text-lg">
                             <a href="#" className="text-white">Dummy Links</a>
                         </div>
                     </div>
