@@ -51,12 +51,12 @@ export default function Computer() {
             <PresentationControls polar={[0, 0]} snap={true} cursor={true} rotation={matrixRotation} enabled = {isRotatable}>
             <group ref={controlsRef}>
                     <Html wrapperClass='monitor' position={[-1.906,1.237,-0.479]} transform rotation={[1.57, 1.67, -1.57]} distanceFactor={0.237} >
-                        <iframe src= "https://treshan.me"/>
+                        <iframe src= "https://itssharl.ee/fr"/>
                     </Html>
                 <group rotation={[-Math.PI / 2, 0, 0]} scale={1.147}>
                     <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
 
-                    <group  onClick={() => handleMeshClick([-0.85, -0.272, 1.4457], [0.13,-Math.PI/2,0], [0,0,0])}>
+                    <group  onClick={() => handleMeshClick([-0.85, -0.272, 1.42], [0.13,-Math.PI/2,0], [0,0,0])}>
 
                         {/* desk */}
                         <mesh
