@@ -29,8 +29,19 @@ export default function Computer({showDetails}) {
         setTargetPosition(newPosition);
         setTargetRotation(newRotation);
         setRotation(false);
-
+        showDetails(false);
     };
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+          if (event.key === 'Escape') {
+            showDetails(true);  // Show details when escape key is pressed
+            setMatrixRotation([0,0,0]);
+            setTargetPosition([0,0,0]);
+            setTargetRotation([0,-Math.PI/2 + 0.5,0]);
+            setRotation(true);
+          }
+        };
     
         // Add event listener
         window.addEventListener('keydown', handleKeyDown);
