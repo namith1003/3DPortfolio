@@ -68,7 +68,7 @@ export default function Computer({showDetails}) {
 
     return (
         <>
-            <Environment preset='warehouse'/>
+            <Environment preset='night'/>
             <PresentationControls polar={[0, 0]} snap={true} cursor={true} rotation={matrixRotation} enabled = {isRotatable}>
             <group ref={controlsRef}>
                     <Html wrapperClass='monitor' position={[-1.906,1.237,-0.479]} transform rotation={[1.57, 1.67, -1.57]} distanceFactor={0.236} >
@@ -229,16 +229,12 @@ export default function Computer({showDetails}) {
                     
                     {/* floor and walls */}
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube_Material_0.geometry}
                         material={materials.Material}
                         rotation={[-Math.PI / 2, 0, 0]}
                         scale={[200, 500, 200]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube_Material_0.geometry}
                         material={materials.Material}
                         rotation={[Math.PI/2 ,0   , 0]}
@@ -246,8 +242,6 @@ export default function Computer({showDetails}) {
                         scale={[200, 500, 200]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube_Material_0.geometry}
                         material={materials.Material}
                         rotation={[-Math.PI / 2, 0, Math.PI ]}
@@ -256,8 +250,6 @@ export default function Computer({showDetails}) {
 
                     {/* door */}
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube001_Material017_0.geometry}
                         material={materials['Material.017']}
                         position={[-186.548, 66.479, 53.676]}
@@ -265,8 +257,6 @@ export default function Computer({showDetails}) {
                         scale={[2.82, 27.101, 57.812]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Sphere_Material016_0.geometry}
                         material={materials['Material.016']}
                         position={[-182.724, 65.012, 29.885]}
@@ -276,8 +266,6 @@ export default function Computer({showDetails}) {
                     
                     {/* bed and ac and bedside table */}
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube002_Material001_0.geometry}
                         material={materials['Material.001']}
                         position={[85.603, 157.079, -161.953]}
@@ -285,8 +273,6 @@ export default function Computer({showDetails}) {
                         scale={[48.513, 11.904, 14.731]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube003_Material012_0.geometry}
                         material={materials['Material.012']}
                         position={[78.787, 25.838, -71.783]}
@@ -294,8 +280,6 @@ export default function Computer({showDetails}) {
                         scale={[63.494, 90.594, 7.459]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube004__0.geometry}
                         material={materials['Cube.004__0']}
                         position={[79.084, 35.333, -73.599]}
@@ -303,8 +287,6 @@ export default function Computer({showDetails}) {
                         scale={[59.992, 89.019, 2.127]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube005_Material003_0.geometry}
                         material={materials['Material.003']}
                         position={[0.954, 0, -91.695]}
@@ -312,8 +294,6 @@ export default function Computer({showDetails}) {
                         scale={100}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube006_Material013_0.geometry}
                         material={materials['Material.013']}
                         position={[-0.541, -4.141, -121.957]}
@@ -321,8 +301,6 @@ export default function Computer({showDetails}) {
                         scale={[102.425, 18.302, 115.772]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube007_Material011_0.geometry}
                         material={materials['Material.011']}
                         position={[111.009, 41.708, -150.872]}
@@ -330,8 +308,6 @@ export default function Computer({showDetails}) {
                         scale={[24.989, 10.918, 5.374]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube008_Material010_0.geometry}
                         material={materials['Material.010']}
                         position={[47.094, 41.708, -150.872]}
@@ -339,8 +315,6 @@ export default function Computer({showDetails}) {
                         scale={[24.989, 10.918, 5.374]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube009_Material018_0.geometry}
                         material={materials['Material.018']}
                         position={[167.524, 26.957, -147.569]}
@@ -350,8 +324,6 @@ export default function Computer({showDetails}) {
 
                     {/* shelf */}
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube019_Material018_0.geometry}
                         material={materials['Material.018']}
                         position={[-95.216, 122.701, -156.004]}
@@ -359,8 +331,6 @@ export default function Computer({showDetails}) {
                         scale={[43.951, 11.188, 1.359]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube020_Material021_0.geometry}
                         material={materials['Material.021']}
                         position={[-131.92, 133.821, -156.683]}
@@ -368,8 +338,6 @@ export default function Computer({showDetails}) {
                         scale={[2.425, 9.766, 9.766]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube021_Material022_0.geometry}
                         material={materials['Material.022']}
                         position={[-126.599, 133.821, -156.683]}
@@ -377,8 +345,6 @@ export default function Computer({showDetails}) {
                         scale={[2.425, 9.766, 9.766]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube022_Material023_0.geometry}
                         material={materials['Material.023']}
                         position={[-121.361, 133.821, -156.683]}
@@ -386,8 +352,6 @@ export default function Computer({showDetails}) {
                         scale={[2.425, 9.766, 9.766]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube023_Material043_0.geometry}
                         material={materials['Material.043']}
                         position={[-114.793, 132.322, -156.683]}
@@ -395,8 +359,6 @@ export default function Computer({showDetails}) {
                         scale={[2.071, 8.34, 8.34]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube024_Material024_0.geometry}
                         material={materials['Material.024']}
                         position={[-93.498, 126.56, -156.683]}
@@ -404,8 +366,6 @@ export default function Computer({showDetails}) {
                         scale={[2.425, 9.766, 9.766]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube025_Material021_0.geometry}
                         material={materials['Material.021']}
                         position={[-93.498, 131.709, -156.683]}
@@ -413,8 +373,6 @@ export default function Computer({showDetails}) {
                         scale={[2.425, 9.766, 9.766]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube026_Material023_0.geometry}
                         material={materials['Material.023']}
                         position={[-93.498, 136.851, -156.683]}
@@ -422,8 +380,6 @@ export default function Computer({showDetails}) {
                         scale={[2.425, 9.766, 9.766]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cylinder_Material019_0.geometry}
                         material={materials['Material.019']}
                         position={[-66.319, 129.448, -154.161]}
@@ -431,8 +387,6 @@ export default function Computer({showDetails}) {
                         scale={5.739}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Icosphere_Material020_0.geometry}
                         material={materials['Material.020']}
                         position={[-65.831, 130.041, -156.284]}
@@ -445,8 +399,6 @@ export default function Computer({showDetails}) {
 
                     {/* beanbag */}
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Sphere002_Material026_0.geometry}
                         material={materials['Material.026']}
                         position={[122.398, 37.019, 122.064]}
@@ -458,8 +410,6 @@ export default function Computer({showDetails}) {
                     
                     {/* lamp */}
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube029_Material008_0.geometry}
                         material={materials['Material.008']}
                         position={[-139.029, 58.355, -72.257]}
@@ -467,8 +417,6 @@ export default function Computer({showDetails}) {
                         scale={[9.881, 25.314, 0.722]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube030_Material014_0.geometry}
                         material={materials['Material.014']}
                         position={[-137.976, 59.234, -108.636]}
@@ -476,8 +424,6 @@ export default function Computer({showDetails}) {
                         scale={[4.944, 3.24, 1.212]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cylinder003_Material027_0.geometry}
                         material={materials['Material.027']}
                         position={[167.724, 53.006, -149.46]}
@@ -485,8 +431,6 @@ export default function Computer({showDetails}) {
                         scale={7.715}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cylinder004_Material028_0.geometry}
                         material={materials['Material.028']}
                         position={[167.925, 64.412, -149.386]}
@@ -496,8 +440,6 @@ export default function Computer({showDetails}) {
 
                     {/* floor lining */}
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube031__0.geometry}
                         material={materials['Cube.004__0']}
                         position={[-185.504, 13.977, 130.019]}
@@ -505,8 +447,6 @@ export default function Computer({showDetails}) {
                         scale={[1.659, 49.178, 6.265]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube032__0.geometry}
                         material={materials['Cube.004__0']}
                         position={[-185.504, 13.977, -70.195]}
@@ -514,8 +454,6 @@ export default function Computer({showDetails}) {
                         scale={[1.659, 96.279, 6.265]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Cube033__0.geometry}
                         material={materials['Cube.004__0']}
                         position={[8.121, 13.977, -166.206]}
@@ -523,8 +461,6 @@ export default function Computer({showDetails}) {
                         scale={[1.659, 191.6, 6.265]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Plane001_Material042_0.geometry}
                         material={materials['Material.042']}
                         position={[3.682, 8.263, 2.634]}
@@ -534,8 +470,6 @@ export default function Computer({showDetails}) {
 
 
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Sphere003_Material029_0.geometry}
                         material={materials['Material.029']}
                         position={[122.617, 147.343, -149.443]}
@@ -543,8 +477,6 @@ export default function Computer({showDetails}) {
                         scale={0.798}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Plane002_Material030_0.geometry}
                         material={materials['Material.030']}
                         position={[-132.077, 143.092, -157.045]}
@@ -552,8 +484,6 @@ export default function Computer({showDetails}) {
                         scale={[2.204, 8.965, 8.965]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Plane003_Material031_0.geometry}
                         material={materials['Material.031']}
                         position={[-126.706, 143.092, -157.045]}
@@ -561,8 +491,6 @@ export default function Computer({showDetails}) {
                         scale={[2.204, 8.965, 8.965]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Plane004_Material032_0.geometry}
                         material={materials['Material.032']}
                         position={[-121.351, 143.092, -157.045]}
@@ -570,8 +498,6 @@ export default function Computer({showDetails}) {
                         scale={[2.204, 8.965, 8.965]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Plane005_Material033_0.geometry}
                         material={materials['Material.033']}
                         position={[-116.986, 140.109, -156.697]}
@@ -579,8 +505,6 @@ export default function Computer({showDetails}) {
                         scale={[1.948, 7.927, 7.927]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Plane006_Material034_0.geometry}
                         material={materials['Material.034']}
                         position={[-84.331, 136.909, -156.489]}
@@ -588,8 +512,6 @@ export default function Computer({showDetails}) {
                         scale={[2.204, 8.965, 8.965]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Plane007_Material035_0.geometry}
                         material={materials['Material.035']}
                         position={[-84.331, 131.567, -156.489]}
@@ -597,8 +519,6 @@ export default function Computer({showDetails}) {
                         scale={[2.204, 8.965, 8.965]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Plane008_Material036_0.geometry}
                         material={materials['Material.036']}
                         position={[-84.331, 126.57, -156.489]}
@@ -606,8 +526,6 @@ export default function Computer({showDetails}) {
                         scale={[2.204, 8.965, 8.965]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Plane011_Material039_0.geometry}
                         material={materials['Material.039']}
                         position={[-102.337, 136.909, -156.489]}
@@ -615,8 +533,6 @@ export default function Computer({showDetails}) {
                         scale={[2.204, 8.965, 8.965]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Plane010_Material038_0.geometry}
                         material={materials['Material.038']}
                         position={[-102.337, 131.567, -156.489]}
@@ -624,8 +540,6 @@ export default function Computer({showDetails}) {
                         scale={[2.204, 8.965, 8.965]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Plane009_Material037_0.geometry}
                         material={materials['Material.037']}
                         position={[-102.337, 126.57, -156.489]}
@@ -633,8 +547,6 @@ export default function Computer({showDetails}) {
                         scale={[2.204, 8.965, 8.965]}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Plane012_Material041_0.geometry}
                         material={materials['Material.041']}
                         position={[-134.526, 66.31, -134.777]}
@@ -642,8 +554,6 @@ export default function Computer({showDetails}) {
                         scale={1.071}
                     />
                     <mesh
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Plane013_Material045_0.geometry}
                         material={materials['Material.045']}
                         position={[-165.863, 89.249, -72.952]}
