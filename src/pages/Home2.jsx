@@ -80,6 +80,13 @@ const Home = () => {
         </div>
       )}
 
+      {!isLoading && isDelayOver && showValue &&(
+        <div className="absolute top-0 left-0 flex justify-start items-start z-10">
+          <div className="pulsing-text">
+            Click the PC...
+          </div>
+        </div>
+      )}
 
     </section>
   );
