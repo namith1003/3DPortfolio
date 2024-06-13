@@ -1,0 +1,19 @@
+.pulsing-text {
+    font-family: 'Press Start 2P', cursive; /* A game-like font */
+    font-size: 1.5rem;
+    color: black;
+    animation: pulse 2s infinite;
+    text-align: end;
+    padding-left: 30px;
+    padding-top: 30px;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  

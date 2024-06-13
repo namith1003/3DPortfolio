@@ -10,7 +10,7 @@ import computerScene from '../assets/3d/bedroom.glb';
 
 import About from '../pages/About';
 
-export default function Computer() {
+export default function Computer({showDetails}) {
     const {nodes, materials} = useGLTF(computerScene);
     const mouse = new THREE.Vector2();
     const raycaster = new THREE.Raycaster();
@@ -29,7 +29,17 @@ export default function Computer() {
         setTargetPosition(newPosition);
         setTargetRotation(newRotation);
         setRotation(false);
+
     };
+    
+        // Add event listener
+        window.addEventListener('keydown', handleKeyDown);
+    
+        // Clean up event listener on component unmount
+        return () => {
+          window.removeEventListener('keydown', handleKeyDown);
+        };
+      }, [showDetails]);
 
     useEffect(() => {
         if (controlsRef.current) {
@@ -50,7 +60,7 @@ export default function Computer() {
             <Environment preset='warehouse'/>
             <PresentationControls polar={[0, 0]} snap={true} cursor={true} rotation={matrixRotation} enabled = {isRotatable}>
             <group ref={controlsRef}>
-                    <Html wrapperClass='monitor' position={[-1.906,1.237,-0.479]} transform rotation={[1.57, 1.67, -1.57]} distanceFactor={0.237} >
+                    <Html wrapperClass='monitor' position={[-1.906,1.237,-0.479]} transform rotation={[1.57, 1.67, -1.57]} distanceFactor={0.236} >
                         <iframe src= "https://itssharl.ee/fr"/>
                     </Html>
                 <group rotation={[-Math.PI / 2, 0, 0]} scale={1.147}>

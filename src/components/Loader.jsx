@@ -1,15 +1,20 @@
-import React from 'react'
-import {Html} from '@react-three/drei'
+import React from 'react';
+import { Html } from '@react-three/drei';
+import './Loader.css';
 
 const Loader = () => {
   return (
     <Html>
-        <div className='flex justify-center items-center'>
-            <div className='w-20 h-20 border-2 border-opacity-20 border-blue-500 border-t-blue-500 rounder-full animate-spin' />
+      <div className="loader-container">
+        <div className="loader-icon">
+          <svg viewBox="0 0 100 100" width="80" height="80">
+            <path d="M50 15A35 35 0 1 1 15 50.5" stroke="white" strokeWidth="4" fill="none" />
+          </svg>
         </div>
+        <div className="loader-text">Welcome to my portfolio</div>
+      </div>
     </Html>
-    
-  )
+  );
 }
 
-export default Loader
+export default Loader;
