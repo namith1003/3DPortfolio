@@ -68,11 +68,7 @@ export default function Computer({showDetails, periodOfDay}) {
 
     return (
         <>
-<<<<<<< HEAD
             <Environment preset = {periodOfDay}/>
-=======
-            <Environment preset='night'/>
->>>>>>> 5a87af1df8d35014e3a627c66165ccfe2e550ce1
             <PresentationControls polar={[0, 0]} snap={true} cursor={true} rotation={matrixRotation} enabled = {isRotatable}>
             <group ref={controlsRef}>
                     <Html wrapperClass='monitor' position={[-1.906,1.237,-0.479]} transform rotation={[1.57, 1.67, -1.57]} distanceFactor={0.236} >

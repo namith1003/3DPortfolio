@@ -34,19 +34,11 @@ function MyCameraReactsToStateChanges() {
 }
 
 const getPeriodOfDay = (hours) => {
-<<<<<<< HEAD
   if (hours >= 5 && hours < 8) return 'dawn';
   if (hours >= 8 && hours < 12) return 'park';
   if (hours >= 12 && hours < 17) return 'warehouse';
   if (hours >= 17 && hours < 20) return 'sunset';
   return 'night';
-=======
-  if (hours >= 5 && hours < 8) return 'Dawn';
-  if (hours >= 8 && hours < 12) return 'Morning';
-  if (hours >= 12 && hours < 17) return 'Evening';
-  if (hours >= 17 && hours < 20) return 'Dusk';
-  return 'Night';
->>>>>>> 5a87af1df8d35014e3a627c66165ccfe2e550ce1
 };
 
 const Home = () => {
@@ -84,13 +76,8 @@ const Home = () => {
           {!isLoading && isDelayOver ? (
             <>
               <directionalLight />
-<<<<<<< HEAD
               <ambientLight intensity={0} />
               <Computers showDetails={showFunction} periodOfDay={periodOfDay}/>
-=======
-              <ambientLight intensity={1} />
-              <Computers showDetails={showFunction} />
->>>>>>> 5a87af1df8d35014e3a627c66165ccfe2e550ce1
             </>
           ) : (
             <Loader />
@@ -115,19 +102,11 @@ const Home = () => {
                   onChange={(e) => setPeriodOfDay(e.target.value)}
                   className="bg-black text-white appearance-none outline-none w-full pl-4 pr-6 rounded-md"
                 >
-<<<<<<< HEAD
                   <option value="dawn">Dawn</option>
                   <option value="park">Morning</option>
                   <option value="warehouse">Evening</option>
                   <option value="sunset">Dusk</option>
                   <option value="night">Night</option>
-=======
-                  <option value="Dawn">Dawn</option>
-                  <option value="Morning">Morning</option>
-                  <option value="Evening">Evening</option>
-                  <option value="Dusk">Dusk</option>
-                  <option value="Night">Night</option>
->>>>>>> 5a87af1df8d35014e3a627c66165ccfe2e550ce1
                 </select>
                 <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                   <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
