@@ -48,7 +48,7 @@ const Home = () => {
   const [showValue, showFunction] = useState(true);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [periodOfDay, setPeriodOfDay] = useState(getPeriodOfDay(currentTime.getHours()));
-
+  
   useEffect(() => {
     // Update the time every second
     const timer = setInterval(() => {
@@ -60,19 +60,65 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    // Simulate loading completion after 5 seconds
+    // Simulate loading completion after 3 seconds
     const loadingTimer = setTimeout(() => {
       setIsLoading(false);
-    }, 5000);
+    }, 3000);
+  
+    return () => clearTimeout(loadingTimer); // Cleanup the timeout on unmount
+  }, []); // Dependency array with currentTime
 
-    return () => clearTimeout(loadingTimer);
+  useEffect(() => {
+
+    if (isLoading){
+      // Set period of day to 'morning' after 1 second
+      const timer1 = setTimeout(() => {
+        setPeriodOfDay('dawn');
+      }, 0);
+
+      // Set period of day to 'afternoon' after 2 seconds
+      const timer2 = setTimeout(() => {
+        setPeriodOfDay('park');
+      }, 600);
+
+      // Set period of day to 'evening' after 3 seconds
+      const timer3 = setTimeout(() => {
+        setPeriodOfDay('warehouse');
+      }, 1200);
+
+      // Set period of day to 'evening' after 3 seconds
+      const timer4 = setTimeout(() => {
+        setPeriodOfDay('sunset');
+      }, 1800);
+
+      // Set period of day to 'evening' after 3 seconds
+      const timer5 = setTimeout(() => {
+        setPeriodOfDay('night');
+      }, 2400);
+
+      const timer6 = setTimeout(() => {
+        setPeriodOfDay(getPeriodOfDay(currentTime.getHours()));
+      }, 2900);
+
+      // Cleanup timers on component unmount
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+        clearTimeout(timer3);
+        clearTimeout(timer4);
+        clearTimeout(timer5);
+        clearTimeout(timer6);
+      };
+    }
+    return () => {};
+    
   }, []);
 
   return (
     <section className="w-screen h-screen relative">
       <Canvas id="canvas" colorManagement={false}>
         <MyCameraReactsToStateChanges />
-        <Suspense fallback={<Loader />}>
+        <Suspense>
           {!isLoading && isDelayOver ? (
             <>
               <directionalLight />
@@ -80,7 +126,13 @@ const Home = () => {
               <Computers showDetails={showFunction} periodOfDay={periodOfDay}/>
             </>
           ) : (
-            <Loader />
+            <>
+              <Loader />
+              <directionalLight />
+              <ambientLight intensity={0} />
+              <Computers showDetails={showFunction} periodOfDay={periodOfDay}/>
+            </>
+            
           )}
         </Suspense>
       </Canvas>
