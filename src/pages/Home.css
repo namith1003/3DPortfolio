@@ -17,5 +17,9 @@
     }
 }
 
+canvas {
+    
+    touch-action: none;
+}
   
   
