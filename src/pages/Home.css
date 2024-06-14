@@ -6,14 +6,16 @@
     text-align: end;
     padding-left: 30px;
     padding-top: 30px;
-  }
+}
   
-  @keyframes pulse {
+@keyframes pulse {
     0%, 100% {
-      opacity: 0;
+        opacity: 0;
     }
     50% {
-      opacity: 1;
+        opacity: 1;
     }
-  }
+}
+
+  
   
