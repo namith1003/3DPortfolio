@@ -34,10 +34,10 @@ function MyCameraReactsToStateChanges() {
 }
 
 const getPeriodOfDay = (hours) => {
-  if (hours >= 5 && hours < 8) return 'dawn';
+  if (hours >= 5 && hours < 8) return 'sunset';
   if (hours >= 8 && hours < 12) return 'park';
   if (hours >= 12 && hours < 17) return 'warehouse';
-  if (hours >= 17 && hours < 20) return 'sunset';
+  if (hours >= 17 && hours < 20) return 'dawn';
   return 'night';
 };
 
@@ -122,14 +122,12 @@ const Home = () => {
           {!isLoading && isDelayOver ? (
             <>
               <directionalLight />
-              <ambientLight intensity={0} />
               <Computers showDetails={showFunction} periodOfDay={periodOfDay}/>
             </>
           ) : (
             <>
               <Loader />
               <directionalLight />
-              <ambientLight intensity={0} />
               <Computers showDetails={showFunction} periodOfDay={periodOfDay}/>
             </>
             
@@ -154,10 +152,10 @@ const Home = () => {
                   onChange={(e) => setPeriodOfDay(e.target.value)}
                   className="bg-black text-white appearance-none outline-none w-full pl-4 pr-6 rounded-md"
                 >
-                  <option value="dawn">Dawn</option>
+                  <option value="sunset">Dawn</option>
                   <option value="park">Morning</option>
                   <option value="warehouse">Evening</option>
-                  <option value="sunset">Dusk</option>
+                  <option value="dawn">Dusk</option>
                   <option value="night">Night</option>
                 </select>
                 <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
