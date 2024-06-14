@@ -115,75 +115,74 @@ const Home = () => {
   }, []);
 
   return (
-    <section className="w-screen h-screen relative">
-      <Canvas id="canvas" colorManagement={false}>
-        <MyCameraReactsToStateChanges />
-        <Suspense>
-          {!isLoading && isDelayOver ? (
-            <>
-              <directionalLight />
-              <Computers showDetails={showFunction} periodOfDay={periodOfDay}/>
-            </>
-          ) : (
-            <>
-              <Loader />
-              <directionalLight />
-              <Computers showDetails={showFunction} periodOfDay={periodOfDay}/>
-            </>
-            
-          )}
-        </Suspense>
-      </Canvas>
+        <section className="w-screen h-screen relative">
+        <Canvas id="canvas" colorManagement={false}>
+          <MyCameraReactsToStateChanges />
+          <Suspense>
+            {!isLoading && isDelayOver ? (
+              <>
+                <directionalLight />
+                <Computers showDetails={showFunction} periodOfDay={periodOfDay}/>
+              </>
+            ) : (
+              <>
+                <Loader/>
+                <Computers showDetails={showFunction} periodOfDay={periodOfDay} isDelayOver={isDelayOver} isLoading={isLoading}/>
+              </>
+              
+            )}
+          </Suspense>
+        </Canvas>
 
-      {!isLoading && isDelayOver && showValue && (
-        <div className="absolute bottom-0 right-0 m-4 z-10 flex items-end">
-          {/* Content */}
-          <div className="space-y-2">
-            <div className="bg-black text-white p-2 text-3xl font-bold text-center rounded-md">Namith Nimlaka</div>
-            {/* New row with clock and period of day */}
-            <div className="flex space-x-2">
-              <div className="flex-1 bg-black text-white trex font-bold p-2 text-lg flex items-center justify-between rounded-md">
-                <span className="pl-2">{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).split(' ')[0]}</span>
-                <span className="pr-2">{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).split(' ')[1]}</span>
+        {!isLoading && isDelayOver && showValue && (
+          <div className="absolute bottom-0 right-0 m-4 z-10 flex items-end">
+            {/* Content */}
+            <div className="space-y-2">
+              <div className="bg-black text-white p-2 text-3xl font-bold text-center rounded-md">Namith Nimlaka</div>
+              {/* New row with clock and period of day */}
+              <div className="flex space-x-2">
+                <div className="flex-1 bg-black text-white trex font-bold p-2 text-lg flex items-center justify-between rounded-md">
+                  <span className="pl-2">{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).split(' ')[0]}</span>
+                  <span className="pr-2">{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).split(' ')[1]}</span>
+                </div>
+                <div className="flex-1 bg-black text-white p-2 text-lg relative rounded-md">
+                  <select
+                    value={periodOfDay}
+                    onChange={(e) => setPeriodOfDay(e.target.value)}
+                    className="bg-black text-white appearance-none outline-none w-full pl-4 pr-6 rounded-md"
+                  >
+                    <option value="sunset">Dawn</option>
+                    <option value="park">Morning</option>
+                    <option value="warehouse">Evening</option>
+                    <option value="dawn">Dusk</option>
+                    <option value="night">Night</option>
+                  </select>
+                  <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </div>
+                </div>
               </div>
-              <div className="flex-1 bg-black text-white p-2 text-lg relative rounded-md">
-                <select
-                  value={periodOfDay}
-                  onChange={(e) => setPeriodOfDay(e.target.value)}
-                  className="bg-black text-white appearance-none outline-none w-full pl-4 pr-6 rounded-md"
-                >
-                  <option value="sunset">Dawn</option>
-                  <option value="park">Morning</option>
-                  <option value="warehouse">Evening</option>
-                  <option value="dawn">Dusk</option>
-                  <option value="night">Night</option>
-                </select>
-                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-                  </svg>
+              <div className="flex space-x-2">
+                <div className="bg-black text-white p-2 text-lg rounded-md">Software Engineer</div>
+                <div className="bg-black text-white p-2 text-lg rounded-md">
+                  <a href="#" className="text-white">Dummy Links</a>
                 </div>
               </div>
             </div>
-            <div className="flex space-x-2">
-              <div className="bg-black text-white p-2 text-lg rounded-md">Software Engineer</div>
-              <div className="bg-black text-white p-2 text-lg rounded-md">
-                <a href="#" className="text-white">Dummy Links</a>
-              </div>
+          </div>
+        )}
+
+        {!isLoading && isDelayOver && showValue && (
+          <div className="absolute top-0 left-0 flex justify-start items-start z-10">
+            <div className="pulsing-text">
+              Click the PC...
             </div>
           </div>
-        </div>
-      )}
-
-      {!isLoading && isDelayOver && showValue && (
-        <div className="absolute top-0 left-0 flex justify-start items-start z-10">
-          <div className="pulsing-text">
-            Click the PC...
-          </div>
-        </div>
-      )}
-
-    </section>
+        )}
+      </section>
+    
   );
 };
 

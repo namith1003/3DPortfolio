@@ -5,9 +5,15 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-color: white; /* Dark background color */
+    background-color: white; 
     color: black;
     flex-direction: row;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    z-index: 9999; 
   }
   
   .loader-icon {
@@ -22,7 +28,7 @@
   }
   
   .loader-text {
-    font-family: 'Poppins', sans-serif; /* Replace with a fancy font family */
+    font-family: 'Poppins', sans-serif; 
     font-size: 2em;
     animation: pulse 1.5s ease-in-out infinite;
   }
