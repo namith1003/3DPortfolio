@@ -107,25 +107,23 @@ const Home = () => {
 
   return (
         <section className="w-screen h-screen relative">
-          
-        {changingTime ? (<ChangingTimeOverlay />):
+        {!isLoading && isDelayOver ? (
+        changingTime ? (
+          <ChangingTimeOverlay />
+        ) : (
           <Canvas id="canvas" colorManagement={false}>
             <MyCameraReactsToStateChanges />
-            <Suspense>
-              {!isLoading && isDelayOver ? (
-                <>
-                  <directionalLight />
-                  <Computers showDetails={showFunction} periodOfDay={periodOfDay}/>
-                </>
-              ) : (
-                <>
-                  <Loader/>
-                  <Computers showDetails={showFunction} periodOfDay={periodOfDay} />
-                </>
-              )}
-            </Suspense>
+            <directionalLight />
+            <Computers showDetails={showFunction} periodOfDay={periodOfDay} />
           </Canvas>
-        }
+        )
+      ) : (
+        <>
+          <Loader />
+          <Computers showDetails={showFunction} periodOfDay={periodOfDay} />
+        </>
+        
+      )}
 
         
 
