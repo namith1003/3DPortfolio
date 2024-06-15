@@ -128,8 +128,12 @@ const Home = () => {
               <div className="flex space-x-2">
                 <div className="bg-black text-white pt-3 text-lg rounded-md pl-4 pr-4" style={{ fontFamily: 'retro' }}>Software Engineer</div>
                 <div className="flex flex-row items-center">
-                  <img src={githubLogo} alt="github" className="w-9 h-9" />
-                  <img src={linkedinLogo} alt="linkedin" className="w-14 h-13" />
+                  <a href="https://github.com/namith1003" target="_blank" rel="noopener noreferrer">
+                    <img src={githubLogo} alt="github" className="w-9 h-9" />
+                  </a>
+                  <a href="https://linkedin.com/in/namith1003" target="_blank" rel="noopener noreferrer">
+                    <img src={linkedinLogo} alt="linkedin" className="w-14 h-13" />
+                  </a>
                 </div>
               </div>
             </div>
