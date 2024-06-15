@@ -118,11 +118,7 @@ const Home = () => {
           </Canvas>
         )
       ) : (
-        <>
           <Loader />
-          <Computers showDetails={showFunction} periodOfDay={periodOfDay} />
-        </>
-        
       )}
 
         
