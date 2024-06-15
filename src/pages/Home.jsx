@@ -6,8 +6,8 @@ import { useFrame } from '@react-three/fiber';
 import create from 'zustand';
 import './Home.css';  // Ensure correct import
 import logo from '../assets/icons/clock.gif'
-import githubLogo from '../assets/icons/github.svg';
-import linkedinLogo from '../assets/icons/linkedin.svg';
+import githubLogo from '../assets/icons/github.png';
+import linkedinLogo from '../assets/icons/linkedin.png';
 
 function MyCameraReactsToStateChanges() {
   useFrame((state) => {
@@ -126,10 +126,10 @@ const Home = () => {
                 </div>
               </div>
               <div className="flex space-x-2">
-                <div className="bg-black text-white p-2 text-lg rounded-md pl-4 pr-4" style={{ fontFamily: 'retro' }}>Software Engineer</div>
+                <div className="bg-black text-white pt-3 text-lg rounded-md pl-4 pr-4" style={{ fontFamily: 'retro' }}>Software Engineer</div>
                 <div className="flex flex-row items-center">
-                  <img src={githubLogo} alt="github" className="w-8 h-8 mx-2" />
-                  <img src={linkedinLogo} alt="linkedin" className="w-8 h-8 mx-2" />
+                  <img src={githubLogo} alt="github" className="w-9 h-9" />
+                  <img src={linkedinLogo} alt="linkedin" className="w-14 h-13" />
                 </div>
               </div>
             </div>
