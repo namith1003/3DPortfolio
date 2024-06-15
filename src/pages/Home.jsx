@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import Loader from '../components/Loader';
 import Computers from '../models/Computer';
@@ -9,27 +9,7 @@ import logo from '../assets/icons/clock.gif'
 import githubLogo from '../assets/icons/github.svg';
 import linkedinLogo from '../assets/icons/linkedin.svg';
 
-const useStore = create((set) => ({
-  position: [0, 1, 0],
-  setPosition: (position) => set({ position }),
-}));
-
-const useMinimumDelay = (delay) => {
-  const [isDelayOver, setIsDelayOver] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsDelayOver(true);
-    }, delay);
-
-    return () => clearTimeout(timer);
-  }, [delay]);
-
-  return isDelayOver;
-};
-
 function MyCameraReactsToStateChanges() {
-  const [x, y, z] = useStore((state) => state.position);
   useFrame((state) => {
     state.camera.position.set(0, 1, 0);
     state.camera.rotation.set(0, 0, 0);
@@ -46,7 +26,6 @@ const getPeriodOfDay = (hours) => {
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const isDelayOver = useMinimumDelay(4000);
   const [showValue, showFunction] = useState(true);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [periodOfDay, setPeriodOfDay] = useState(getPeriodOfDay(currentTime.getHours()));
@@ -101,23 +80,21 @@ const Home = () => {
 
   return (
         <section className="w-screen h-screen relative">
-        {!isLoading && isDelayOver ? (
-          changingTime ? (
-            <ChangingTimeOverlay />
+          {!isLoading? (
+            changingTime ? (
+              <ChangingTimeOverlay />
+              ) : (
+                <Canvas id="canvas" colorManagement={false}>
+                  <MyCameraReactsToStateChanges />
+                  <directionalLight />
+                  <Computers showDetails={showFunction} periodOfDay={periodOfDay} />
+                </Canvas>
+            )
           ) : (
-            <Canvas id="canvas" colorManagement={false}>
-              <MyCameraReactsToStateChanges />
-              <directionalLight />
-              <Computers showDetails={showFunction} periodOfDay={periodOfDay} />
-            </Canvas>
-        )
-      ) : (
-          <Loader />
-      )}
+              <Loader />
+          )}
 
-        
-
-        {!isLoading && isDelayOver && showValue && (
+        {!isLoading && showValue && (
           <div className="absolute bottom-0 right-0 m-4 z-10 flex items-end">
             {/* Content */}
             <div className="space-y-2">
@@ -159,7 +136,7 @@ const Home = () => {
           </div>
         )}
 
-        {!isLoading && isDelayOver && showValue && (
+        {!isLoading && showValue && (
           <div className="absolute top-0 left-0 flex justify-start items-start z-10">
             <div className={`pulsing-text ${periodOfDay === 'night' ? 'text-white' : 'text-black'}`}>
               Click the PC...

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Html } from '@react-three/drei';
 import './Loader.css';
 import loaderImage from '../assets/images/loader.jpg';
 import homeLogo from '../assets/icons/home.gif';

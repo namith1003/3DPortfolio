@@ -1,21 +1,11 @@
-import {Html, Environment, PresentationControls, useGLTF, CameraShake} from '@react-three/drei'
-import {useFrame, useThree} from '@react-three/fiber'
-import * as THREE from 'three';
-import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
-import {FirstPersonControls} from 'three/examples/jsm/controls/FirstPersonControls.js';
+import {Html, Environment, PresentationControls, useGLTF, CameraShake} from '@react-three/drei';
 import gsap from 'gsap';
-import React, { Suspense, useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import computerScene from '../assets/3d/bedroom.glb';
 
-import About from '../pages/About';
-
 export default function Computer({showDetails, periodOfDay}) {
     const {nodes, materials} = useGLTF(computerScene);
-    const mouse = new THREE.Vector2();
-    const raycaster = new THREE.Raycaster();
-
-    const { scene } = useGLTF(computerScene);
     const [targetPosition, setTargetPosition] = useState([0,0,0]);
     const [targetRotation, setTargetRotation] = useState([0,-Math.PI/2 + 0.5,0]);
     const [matrixRotation, setMatrixRotation] = useState([0,0,0]);
