@@ -9,7 +9,7 @@
 
 .pulsing-text {
     font-family: retro; /* A game-like font */
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: black;
     animation: pulse 2s infinite;
     text-align: end;
@@ -27,7 +27,6 @@
 }
 
 canvas {
-    
     touch-action: none;
 }
   

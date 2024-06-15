@@ -6,6 +6,8 @@ import { useFrame } from '@react-three/fiber';
 import create from 'zustand';
 import './Home.css';  // Ensure correct import
 import logo from '../assets/icons/clock.gif'
+import githubLogo from '../assets/icons/github.svg';
+import linkedinLogo from '../assets/icons/linkedin.svg';
 
 const useStore = create((set) => ({
   position: [0, 1, 0],
@@ -44,7 +46,7 @@ const getPeriodOfDay = (hours) => {
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const isDelayOver = useMinimumDelay(3000);
+  const isDelayOver = useMinimumDelay(4000);
   const [showValue, showFunction] = useState(true);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [periodOfDay, setPeriodOfDay] = useState(getPeriodOfDay(currentTime.getHours()));
@@ -92,7 +94,7 @@ const Home = () => {
     // Simulate loading completion after 3 seconds
     const loadingTimer = setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 4000);
   
     return () => clearTimeout(loadingTimer); // Cleanup the timeout on unmount
   }, []); // Dependency array with currentTime
@@ -122,11 +124,11 @@ const Home = () => {
               <div className="bg-black text-white p-2 text-3xl text-center rounded-md" style={{ fontFamily: 'retro' }}>Namith Nimlaka</div>
               {/* New row with clock and period of day */}
               <div className="flex space-x-2">
-                <div className="flex-1 bg-black text-white trex p-2 text-lg flex items-center justify-between rounded-md" style={{ fontFamily: 'retro' }}>
+                <div className="flex-1 bg-black text-white trex p-2 text-xl flex items-center justify-between rounded-md" style={{ fontFamily: 'retro' }}>
                   <span className="pl-2">{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).split(' ')[0]}</span>
                   <span className="pr-2">{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).split(' ')[1]}</span>
                 </div>
-                <div className="flex-1 bg-black text-white p-2 text-lg relative rounded-md">
+                <div className="flex-1 bg-black text-white p-2 text-xl relative rounded-md">
                   <select
                     value={periodOfDay}
                     onChange={(e) => handlePeriodOfDayChange(e)}
@@ -148,8 +150,9 @@ const Home = () => {
               </div>
               <div className="flex space-x-2">
                 <div className="bg-black text-white p-2 text-lg rounded-md pl-4 pr-4" style={{ fontFamily: 'retro' }}>Software Engineer</div>
-                <div className="bg-black text-white p-2 text-lg rounded-md pl-4 pr-4" style={{ fontFamily: 'retro' }}>
-                  <a href="#" className="text-white">Dummy Links</a>
+                <div className="flex flex-row items-center">
+                  <img src={githubLogo} alt="github" className="w-8 h-8 mx-2" />
+                  <img src={linkedinLogo} alt="linkedin" className="w-8 h-8 mx-2" />
                 </div>
               </div>
             </div>
@@ -158,7 +161,7 @@ const Home = () => {
 
         {!isLoading && isDelayOver && showValue && (
           <div className="absolute top-0 left-0 flex justify-start items-start z-10">
-            <div className="pulsing-text">
+            <div className={`pulsing-text ${periodOfDay === 'night' ? 'text-white' : 'text-black'}`}>
               Click the PC...
             </div>
           </div>

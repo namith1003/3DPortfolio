@@ -1,3 +1,37 @@
+@keyframes zoomOut {
+  0% {
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.background-image {
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  animation: zoomOut 3s ease-out forwards;
+}
+
+.loader-content {
+  z-index: 9999;
+}
+
+.loader-text {
+  font-family: 'retro';
+}
+
+.copyright {
+  font-family: 'retro';
+}
+
 .loader-container {
   display: flex;
   justify-content: center;
@@ -40,9 +74,9 @@
 }
 
 .loader-text {
-  font-family: 'Poppins', sans-serif;
   text-align: center;
-  animation: pulse 1.5s ease-in-out infinite;
+  animation: pulse 2s ease-in-out infinite;
+  padding-bottom: 60px;
 }
 
 @media (max-width: 768px) {
