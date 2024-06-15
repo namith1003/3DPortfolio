@@ -25,8 +25,8 @@ const Loader = () => {
         <div className="loader-content" style={{zIndex: 9999}}>
           <div className="loader-icon">🏗️
           </div>
-          <div className="loader-text">Building Your Home ...</div>
-          <div className="copyright"> Created and Designed by Namith &copy; 2024 </div>
+          <div className="loader-text" style={{ fontFamily: 'retro' }}>Building Your Home ...</div>
+          <div className="copyright pb-1" style={{ fontFamily: 'retro' }}> Created and Designed by Namith &copy; 2024 </div>
         </div>
         
       </div>

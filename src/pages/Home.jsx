@@ -5,6 +5,7 @@ import Computers from '../models/Computer';
 import { useFrame } from '@react-three/fiber';
 import create from 'zustand';
 import './Home.css';  // Ensure correct import
+import logo from '../assets/icons/clock.gif'
 
 const useStore = create((set) => ({
   position: [0, 1, 0],
@@ -69,10 +70,11 @@ const Home = () => {
 
   const ChangingTimeOverlay = () => (
     <div
-      className="fixed top-0 left-0 w-full h-full bg-black flex justify-center items-center z-50"
+      className="fixed top-0 left-0 w-full h-full bg-black flex flex-col justify-center items-center z-50"
       style={{ zIndex: 9999 }}
     >
-      <span className="text-white text-2xl">Changing time...</span>
+      <img src={logo} alt="loading..." style={{ width: '100px', height: '100px' }} />
+      <span className="text-white text-3xl pt-5" style={{ fontFamily: 'retro' }}>Changing time ...</span>
     </div>
   );
   
@@ -95,27 +97,17 @@ const Home = () => {
     return () => clearTimeout(loadingTimer); // Cleanup the timeout on unmount
   }, []); // Dependency array with currentTime
 
-  useEffect(() => {
-    // Simulate loading completion after 3 seconds
-    const loadingTimer = setTimeout(() => {
-      setIsCaching(true);
-    }, 1000);
-  
-    return () => clearTimeout(loadingTimer); // Cleanup the timeout on unmount
-  }, []); // Dependency array with currentTime
-
-
   return (
         <section className="w-screen h-screen relative">
         {!isLoading && isDelayOver ? (
-        changingTime ? (
-          <ChangingTimeOverlay />
-        ) : (
-          <Canvas id="canvas" colorManagement={false}>
-            <MyCameraReactsToStateChanges />
-            <directionalLight />
-            <Computers showDetails={showFunction} periodOfDay={periodOfDay} />
-          </Canvas>
+          changingTime ? (
+            <ChangingTimeOverlay />
+          ) : (
+            <Canvas id="canvas" colorManagement={false}>
+              <MyCameraReactsToStateChanges />
+              <directionalLight />
+              <Computers showDetails={showFunction} periodOfDay={periodOfDay} />
+            </Canvas>
         )
       ) : (
           <Loader />
@@ -127,10 +119,10 @@ const Home = () => {
           <div className="absolute bottom-0 right-0 m-4 z-10 flex items-end">
             {/* Content */}
             <div className="space-y-2">
-              <div className="bg-black text-white p-2 text-3xl font-bold text-center rounded-md">Namith Nimlaka</div>
+              <div className="bg-black text-white p-2 text-3xl text-center rounded-md" style={{ fontFamily: 'retro' }}>Namith Nimlaka</div>
               {/* New row with clock and period of day */}
               <div className="flex space-x-2">
-                <div className="flex-1 bg-black text-white trex font-bold p-2 text-lg flex items-center justify-between rounded-md">
+                <div className="flex-1 bg-black text-white trex p-2 text-lg flex items-center justify-between rounded-md" style={{ fontFamily: 'retro' }}>
                   <span className="pl-2">{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).split(' ')[0]}</span>
                   <span className="pr-2">{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).split(' ')[1]}</span>
                 </div>
@@ -139,6 +131,7 @@ const Home = () => {
                     value={periodOfDay}
                     onChange={(e) => handlePeriodOfDayChange(e)}
                     className="bg-black text-white appearance-none outline-none w-full pl-4 pr-6 rounded-md"
+                    style={{ fontFamily: 'retro' }}
                   >
                     <option value="sunset">Dawn</option>
                     <option value="park">Morning</option>
@@ -154,8 +147,8 @@ const Home = () => {
                 </div>
               </div>
               <div className="flex space-x-2">
-                <div className="bg-black text-white p-2 text-lg rounded-md">Software Engineer</div>
-                <div className="bg-black text-white p-2 text-lg rounded-md">
+                <div className="bg-black text-white p-2 text-lg rounded-md pl-4 pr-4" style={{ fontFamily: 'retro' }}>Software Engineer</div>
+                <div className="bg-black text-white p-2 text-lg rounded-md pl-4 pr-4" style={{ fontFamily: 'retro' }}>
                   <a href="#" className="text-white">Dummy Links</a>
                 </div>
               </div>

@@ -1,5 +1,7 @@
+
+
 .pulsing-text {
-    font-family: 'Press Start 2P', cursive; /* A game-like font */
+    font-family: retro; /* A game-like font */
     font-size: 1.5rem;
     color: black;
     animation: pulse 2s infinite;
