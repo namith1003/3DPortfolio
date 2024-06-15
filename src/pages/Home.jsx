@@ -7,7 +7,7 @@ import create from 'zustand';
 import './Home.css';  // Ensure correct import
 
 const useStore = create((set) => ({
-  position: [0, 0, 0],
+  position: [0, 1, 0],
   setPosition: (position) => set({ position }),
 }));
 
@@ -34,20 +34,47 @@ function MyCameraReactsToStateChanges() {
 }
 
 const getPeriodOfDay = (hours) => {
-  if (hours >= 5 && hours < 8) return 'sunset';
-  if (hours >= 8 && hours < 12) return 'park';
+  if (hours >= 5 && hours < 7) return 'sunset';
+  if (hours >= 7 && hours < 12) return 'park';
   if (hours >= 12 && hours < 17) return 'warehouse';
-  if (hours >= 17 && hours < 20) return 'dawn';
+  if (hours >= 17 && hours < 19) return 'dawn';
   return 'night';
 };
 
 const Home = () => {
-  const setPosition = useStore((state) => state.setPosition);
   const [isLoading, setIsLoading] = useState(true);
-  const isDelayOver = useMinimumDelay(2000); // 2 seconds delay
+  const isDelayOver = useMinimumDelay(3000);
   const [showValue, showFunction] = useState(true);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [periodOfDay, setPeriodOfDay] = useState(getPeriodOfDay(currentTime.getHours()));
+
+  const [changingTime, setChangingTime] = useState(false);
+
+  const handlePeriodOfDayChange = (e) => {
+    setChangingTime(true); // Set changingTime to true before the period of day change
+    setPeriodOfDay(e.target.value);
+  };
+
+  useEffect(() => {
+    let timeoutId;
+
+    if (changingTime) {
+      timeoutId = setTimeout(() => {
+        setChangingTime(false);
+      }, 2000); // Adjust this value as needed
+    }
+
+    return () => clearTimeout(timeoutId);
+  }, [changingTime]);
+
+  const ChangingTimeOverlay = () => (
+    <div
+      className="fixed top-0 left-0 w-full h-full bg-black flex justify-center items-center z-50"
+      style={{ zIndex: 9999 }}
+    >
+      <span className="text-white text-2xl">Changing time...</span>
+    </div>
+  );
   
   useEffect(() => {
     // Update the time every second
@@ -69,70 +96,38 @@ const Home = () => {
   }, []); // Dependency array with currentTime
 
   useEffect(() => {
+    // Simulate loading completion after 3 seconds
+    const loadingTimer = setTimeout(() => {
+      setIsCaching(true);
+    }, 1000);
+  
+    return () => clearTimeout(loadingTimer); // Cleanup the timeout on unmount
+  }, []); // Dependency array with currentTime
 
-    if (isLoading){
-      // Set period of day to 'morning' after 1 second
-      const timer1 = setTimeout(() => {
-        setPeriodOfDay('dawn');
-      }, 0);
-
-      // Set period of day to 'afternoon' after 2 seconds
-      const timer2 = setTimeout(() => {
-        setPeriodOfDay('park');
-      }, 600);
-
-      // Set period of day to 'evening' after 3 seconds
-      const timer3 = setTimeout(() => {
-        setPeriodOfDay('warehouse');
-      }, 1200);
-
-      // Set period of day to 'evening' after 3 seconds
-      const timer4 = setTimeout(() => {
-        setPeriodOfDay('sunset');
-      }, 1800);
-
-      // Set period of day to 'evening' after 3 seconds
-      const timer5 = setTimeout(() => {
-        setPeriodOfDay('night');
-      }, 2400);
-
-      const timer6 = setTimeout(() => {
-        setPeriodOfDay(getPeriodOfDay(currentTime.getHours()));
-      }, 2900);
-
-      // Cleanup timers on component unmount
-      return () => {
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-        clearTimeout(timer3);
-        clearTimeout(timer4);
-        clearTimeout(timer5);
-        clearTimeout(timer6);
-      };
-    }
-    return () => {};
-    
-  }, []);
 
   return (
         <section className="w-screen h-screen relative">
-        <Canvas id="canvas" colorManagement={false}>
-          <MyCameraReactsToStateChanges />
-          <Suspense>
-            {!isLoading && isDelayOver ? (
-              <>
-                <directionalLight />
-                <Computers showDetails={showFunction} periodOfDay={periodOfDay}/>
-              </>
-            ) : (
-              <>
-                <Loader/>
-                <Computers showDetails={showFunction} periodOfDay={periodOfDay} isDelayOver={isDelayOver} isLoading={isLoading}/>
-              </>
-              
-            )}
-          </Suspense>
-        </Canvas>
+          
+        {changingTime ? (<ChangingTimeOverlay />):
+          <Canvas id="canvas" colorManagement={false}>
+            <MyCameraReactsToStateChanges />
+            <Suspense>
+              {!isLoading && isDelayOver ? (
+                <>
+                  <directionalLight />
+                  <Computers showDetails={showFunction} periodOfDay={periodOfDay}/>
+                </>
+              ) : (
+                <>
+                  <Loader/>
+                  <Computers showDetails={showFunction} periodOfDay={periodOfDay} />
+                </>
+              )}
+            </Suspense>
+          </Canvas>
+        }
+
+        
 
         {!isLoading && isDelayOver && showValue && (
           <div className="absolute bottom-0 right-0 m-4 z-10 flex items-end">
@@ -148,7 +143,7 @@ const Home = () => {
                 <div className="flex-1 bg-black text-white p-2 text-lg relative rounded-md">
                   <select
                     value={periodOfDay}
-                    onChange={(e) => setPeriodOfDay(e.target.value)}
+                    onChange={(e) => handlePeriodOfDayChange(e)}
                     className="bg-black text-white appearance-none outline-none w-full pl-4 pr-6 rounded-md"
                   >
                     <option value="sunset">Dawn</option>

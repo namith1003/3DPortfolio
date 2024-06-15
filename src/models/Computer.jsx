@@ -10,7 +10,7 @@ import computerScene from '../assets/3d/bedroom.glb';
 
 import About from '../pages/About';
 
-export default function Computer({showDetails, periodOfDay, isLoading, isDelayOver}) {
+export default function Computer({showDetails, periodOfDay}) {
     const {nodes, materials} = useGLTF(computerScene);
     const mouse = new THREE.Vector2();
     const raycaster = new THREE.Raycaster();
@@ -72,7 +72,7 @@ export default function Computer({showDetails, periodOfDay, isLoading, isDelayOv
             <PresentationControls polar={[-Math.PI / 8, Math.PI / 8]} snap={true} cursor={true} rotation={matrixRotation} enabled = {isRotatable}>
             <group ref={controlsRef} >
                     <Html wrapperClass='monitor' position={[-1.93,1.245,-0.479]} transform rotation={[1.6, 1.67, -1.6]} distanceFactor={0.236}>
-                        <iframe src= "https://itssharl.ee/fr" style={{ opacity: isLoading && !isDelayOver ? 0 : 1 }}/>
+                        <iframe src= "https://itssharl.ee/fr"/>
                     </Html>
                 <group rotation={[-Math.PI / 2, 0, 0]} scale={1.147}>
                     <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
