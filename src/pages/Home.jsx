@@ -3,7 +3,6 @@ import { Canvas } from '@react-three/fiber';
 import Loader from '../components/Loader';
 import Computers from '../models/Computer';
 import { useFrame } from '@react-three/fiber';
-import create from 'zustand';
 import './Home.css';  // Ensure correct import
 import logo from '../assets/icons/clock.gif'
 import githubLogo from '../assets/icons/github.png';
@@ -98,18 +97,18 @@ const Home = () => {
           <div className="absolute bottom-0 right-0 m-4 z-10 flex items-end">
             {/* Content */}
             <div className="space-y-2">
-              <div className="bg-black text-white p-2 text-3xl text-center rounded-md" style={{ fontFamily: 'retro' }}>Namith Nimlaka</div>
+              <div className="bg-black text-white p-2 text-3xl text-center " style={{ fontFamily: 'retro' }}>Namith Nimlaka</div>
               {/* New row with clock and period of day */}
               <div className="flex space-x-2">
-                <div className="flex-1 bg-black text-white trex p-2 text-xl flex items-center justify-between rounded-md" style={{ fontFamily: 'retro' }}>
+                <div className="flex-1 bg-black text-white trex p-2 text-xl flex items-center justify-between " style={{ fontFamily: 'retro' }}>
                   <span className="pl-2">{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).split(' ')[0]}</span>
                   <span className="pr-2">{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).split(' ')[1]}</span>
                 </div>
-                <div className="flex-1 bg-black text-white p-2 text-xl relative rounded-md">
+                <div className="flex-1 bg-black text-white p-2 text-xl relative ">
                   <select
                     value={periodOfDay}
                     onChange={(e) => handlePeriodOfDayChange(e)}
-                    className="bg-black text-white appearance-none outline-none w-full pl-4 pr-6 rounded-md"
+                    className="bg-black text-white appearance-none outline-none w-full pl-4 pr-6 "
                     style={{ fontFamily: 'retro' }}
                   >
                     <option value="sunset">Dawn</option>
@@ -126,7 +125,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="flex space-x-2">
-                <div className="bg-black text-white pt-3 text-lg rounded-md pl-4 pr-4" style={{ fontFamily: 'retro' }}>Software Engineer</div>
+                <div className="bg-black text-white pt-3 text-lg pl-3 pr-3" style={{ fontFamily: 'retro' }}>Software Engineer</div>
                 <div className="flex flex-row items-center">
                   <a href="https://github.com/namith1003" target="_blank" rel="noopener noreferrer">
                     <img src={githubLogo} alt="github" className="w-9 h-9" />
