@@ -100,9 +100,16 @@ const Home = () => {
               <div className="bg-black text-white p-2 text-3xl text-center " style={{ fontFamily: 'retro' }}>Namith Nimlaka</div>
               {/* New row with clock and period of day */}
               <div className="flex space-x-2">
-                <div className="flex-1 bg-black text-white trex p-2 text-xl flex items-center justify-between " style={{ fontFamily: 'retro' }}>
-                  <span className="pl-2">{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).split(' ')[0]}</span>
-                  <span className="pr-2">{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).split(' ')[1]}</span>
+                <div
+                  className="bg-black text-white p-2 text-xl flex justify-between fixed-size-box"
+                  style={{ fontFamily: 'retro' }}
+                >
+                  <span className="fixed-time">
+                    {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).split(' ')[0]}
+                  </span>
+                  <span className="fixed-time">
+                    {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).split(' ')[1]}
+                  </span>
                 </div>
                 <div className="flex-1 bg-black text-white p-2 text-xl relative ">
                   <select
