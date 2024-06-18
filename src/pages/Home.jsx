@@ -135,7 +135,7 @@ const Home = () => {
               </div>
             </div>
             <div className="flex space-x-2">
-              <div className="bg-black text-white pt-3 text-lg pl-3 pr-3" style={{ fontFamily: 'retro' }}>Software Engineer</div>
+              <div className="bg-black text-white p-3 text-lg text-center" style={{ fontFamily: 'retro' }}>Software Engineer</div>
               <div className="flex flex-row items-center">
                 <a href="https://github.com/namith1003" target="_blank" rel="noopener noreferrer">
                   <img src={githubLogo} alt="github" className="w-9 h-9" />
