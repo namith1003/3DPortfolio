@@ -6,6 +6,7 @@ import homeLogo from '../assets/icons/home.gif';
 
 const Loader = () => {
   const [backgroundImage, setBackgroundImage] = useState(loaderImage);
+  const [loaderText, setLoaderText] = useState('Checking Time Of Day ...');
 
   useEffect(() => {
     const handleResize = () => {
@@ -22,6 +23,14 @@ const Loader = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setLoaderText('Building My Room ...');
+    }, 2000);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   return (
     <div className="loader-container">
       <div
@@ -36,7 +45,7 @@ const Loader = () => {
           alt="loading..."
           style={{ width: '50px', height: '50px' }}
         />
-        <div className="loader-text">Building Your Home ...</div>
+        <div className="loader-text">{loaderText}</div>
         <div className="copyright pb-2 text-center">
           Created and Designed by Namith &copy; 2024
         </div>
