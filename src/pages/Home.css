@@ -1,3 +1,4 @@
+/* General styles */
 .fixed-size-box {
     width: 160px;
   }
@@ -6,8 +7,7 @@
     height: 30px;
   }
   
-
-@font-face {
+  @font-face {
     font-family: 'retro';
     src: url('../assets/fonts/retro.ttf') format('truetype');
   }
@@ -15,28 +15,64 @@
   body {
     font-family: 'retro', sans-serif;
   }
-
-.pulsing-text {
-    font-family: retro; /* A game-like font */
+  
+  .pulsing-text {
+    font-family: retro;
     font-size: 2rem;
-    color: black;
     animation: pulse 2s infinite;
     text-align: end;
     padding-left: 30px;
     padding-top: 30px;
-}
+  }
   
-@keyframes pulse {
+  @keyframes pulse {
     0%, 100% {
-        opacity: 0;
+      opacity: 0;
     }
     50% {
-        opacity: 1;
+      opacity: 1;
     }
-}
-
-canvas {
-    touch-action: none;
-}
+  }
   
+  canvas {
+    touch-action: none;
+  }
+  
+  /* Responsive styling */
+  
+  /* Landscape mode */
+  @media (orientation: landscape) {
+    .details-container {
+      transform: scale(calc(100vw / 1920));
+      transform-origin: top right;
+    }
+  
+    .pulsing-text {
+      transform: scale(calc(100vw / 1920));
+      transform-origin: top left;
+    }
+  }
+  
+  /* Portrait mode */
+  @media (orientation: portrait) {
+    .details-container {
+      transform: scale(calc(100vh/ 1080));
+    }
+  
+    .pulsing-text {
+      transform: scale(calc(100vh / 1080));
+    }
+  }
+  
+  /* Mobile adjustments to avoid going under home/back buttons */
+  @media (max-width: 768px) {
+    .details-container {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  
+    .pulsing-text {
+      padding-top: 20px;
+      padding-left: 20px;
+    }
+  }
   

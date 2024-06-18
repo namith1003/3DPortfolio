@@ -28,7 +28,6 @@ const Home = () => {
   const [showValue, showFunction] = useState(true);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [periodOfDay, setPeriodOfDay] = useState(getPeriodOfDay(currentTime.getHours()));
-
   const [changingTime, setChangingTime] = useState(false);
 
   const handlePeriodOfDayChange = (e) => {
@@ -57,7 +56,7 @@ const Home = () => {
       <span className="text-white text-3xl pt-5" style={{ fontFamily: 'retro' }}>Changing time ...</span>
     </div>
   );
-  
+
   useEffect(() => {
     // Update the time every second
     const timer = setInterval(() => {
@@ -73,88 +72,88 @@ const Home = () => {
     const loadingTimer = setTimeout(() => {
       setIsLoading(false);
     }, 4000);
-  
+
     return () => clearTimeout(loadingTimer); // Cleanup the timeout on unmount
   }, []); // Dependency array with currentTime
 
   return (
-        <section className="w-screen h-screen relative">
-          {!isLoading? (
-            changingTime ? (
-              <ChangingTimeOverlay />
-              ) : (
-                <Canvas id="canvas" colorManagement={false}>
-                  <MyCameraReactsToStateChanges />
-                  <directionalLight />
-                  <Computers showDetails={showFunction} periodOfDay={periodOfDay} />
-                </Canvas>
-            )
-          ) : (
-              <Loader />
-          )}
+    <section className="w-screen h-screen relative">
+      {!isLoading ? (
+        changingTime ? (
+          <ChangingTimeOverlay />
+        ) : (
+          <Canvas id="canvas" colorManagement={false}>
+            <MyCameraReactsToStateChanges />
+            <directionalLight />
+            <Computers showDetails={showFunction} periodOfDay={periodOfDay} />
+          </Canvas>
+        )
+      ) : (
+        <Loader />
+      )}
 
-        {!isLoading && showValue && (
-          <div className="absolute bottom-0 right-0 m-4 z-10 flex items-end">
-            {/* Content */}
-            <div className="space-y-2">
-              <div className="bg-black text-white p-2 text-3xl text-center " style={{ fontFamily: 'retro' }}>Namith Nimlaka</div>
-              {/* New row with clock and period of day */}
-              <div className="flex space-x-2">
-                <div
-                  className="bg-black text-white p-2 text-xl flex justify-between fixed-size-box"
+      {/* my details and time component */}
+      {!isLoading && showValue && (
+        <div className="details-container absolute bottom-0 right-0 m-4 z-10 flex items-end">
+          {/* Content */}
+          <div className="space-y-2">
+            <div className="bg-black text-white p-2 text-3xl text-center" style={{ fontFamily: 'retro' }}>Namith Nimlaka</div>
+            {/* New row with clock and period of day */}
+            <div className="flex space-x-2">
+              <div
+                className="bg-black text-white p-2 text-xl flex justify-between fixed-size-box"
+                style={{ fontFamily: 'retro' }}
+              >
+                <span className="fixed-time">
+                  {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).split(' ')[0]}
+                </span>
+                <span className="fixed-time">
+                  {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).split(' ')[1]}
+                </span>
+              </div>
+              <div className="flex-1 bg-black text-white p-2 text-xl relative">
+                <select
+                  value={periodOfDay}
+                  onChange={(e) => handlePeriodOfDayChange(e)}
+                  className="bg-black text-white appearance-none outline-none w-full pl-4 pr-6"
                   style={{ fontFamily: 'retro' }}
                 >
-                  <span className="fixed-time">
-                    {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).split(' ')[0]}
-                  </span>
-                  <span className="fixed-time">
-                    {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).split(' ')[1]}
-                  </span>
-                </div>
-                <div className="flex-1 bg-black text-white p-2 text-xl relative ">
-                  <select
-                    value={periodOfDay}
-                    onChange={(e) => handlePeriodOfDayChange(e)}
-                    className="bg-black text-white appearance-none outline-none w-full pl-4 pr-6 "
-                    style={{ fontFamily: 'retro' }}
-                  >
-                    <option value="sunset">Dawn</option>
-                    <option value="park">Morning</option>
-                    <option value="warehouse">Evening</option>
-                    <option value="dawn">Dusk</option>
-                    <option value="night">Night</option>
-                  </select>
-                  <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div className="flex space-x-2">
-                <div className="bg-black text-white pt-3 text-lg pl-3 pr-3" style={{ fontFamily: 'retro' }}>Software Engineer</div>
-                <div className="flex flex-row items-center">
-                  <a href="https://github.com/namith1003" target="_blank" rel="noopener noreferrer">
-                    <img src={githubLogo} alt="github" className="w-9 h-9" />
-                  </a>
-                  <a href="https://linkedin.com/in/namith1003" target="_blank" rel="noopener noreferrer">
-                    <img src={linkedinLogo} alt="linkedin" className="w-14 h-13" />
-                  </a>
+                  <option value="sunset">Dawn</option>
+                  <option value="park">Morning</option>
+                  <option value="warehouse">Evening</option>
+                  <option value="dawn">Dusk</option>
+                  <option value="night">Night</option>
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
                 </div>
               </div>
             </div>
-          </div>
-        )}
-
-        {!isLoading && showValue && (
-          <div className="absolute top-0 left-0 flex justify-start items-start z-10">
-            <div className={`pulsing-text ${periodOfDay === 'night' ? 'text-white' : 'text-black'}`}>
-              Click the PC...
+            <div className="flex space-x-2">
+              <div className="bg-black text-white pt-3 text-lg pl-3 pr-3" style={{ fontFamily: 'retro' }}>Software Engineer</div>
+              <div className="flex flex-row items-center">
+                <a href="https://github.com/namith1003" target="_blank" rel="noopener noreferrer">
+                  <img src={githubLogo} alt="github" className="w-9 h-9" />
+                </a>
+                <a href="https://linkedin.com/in/namith1003" target="_blank" rel="noopener noreferrer">
+                  <img src={linkedinLogo} alt="linkedin" className="w-14 h-13" />
+                </a>
+              </div>
             </div>
           </div>
-        )}
-      </section>
-    
+        </div>
+      )}
+      {/* click pc text component */}
+      {!isLoading && showValue && (
+        <div className="pulsing-text absolute top-0 left-0 flex justify-start items-start z-10">
+          <div className={periodOfDay === 'night' ? 'text-white' : 'text-black'}>
+            Click the PC...
+          </div>
+        </div>
+      )}
+    </section>
   );
 };
 
