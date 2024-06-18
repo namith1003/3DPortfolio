@@ -54,6 +54,43 @@ export default function Computer({showDetails, periodOfDay}) {
           gsap.to(controlsRef.current.rotation, { x: targetRotation[0], y: targetRotation[1], z: targetRotation[2], duration: 1});
         }
       }, [targetRotation]);
+
+    
+      useEffect(() => {
+        if (isRotatable) {
+          return; // If isRotatable is true, do not set up event listeners
+        }
+      
+        const handleResize = () => {
+          const newAspectRatio = window.innerWidth / window.innerHeight;
+          let positionArray = [0, 0, 0];
+      
+          if (newAspectRatio > 1.62) {
+            positionArray = [-0.84, -0.272, 1.42];
+          } else if (newAspectRatio > 0.6666) {
+            positionArray = [-0.83, -0.1, 1];
+          } else {
+            positionArray = [-0.85, 0, 0.5];
+          }
+      
+          // Call handleMeshClick to update behavior based on new aspect ratio
+          handleMeshClick(positionArray, [0.13, -Math.PI/2, 0], [0, 0, 0]);
+        };
+      
+        const orientationChangeHandler = () => {
+          const orientation = window.matchMedia("(orientation: landscape)").matches ? "landscape" : "portrait";
+          console.log("Orientation changed:", orientation);
+          handleResize(); // Call handleResize when orientation changes
+        };
+      
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('orientationchange', orientationChangeHandler);
+      
+        return () => {
+          window.removeEventListener('resize', handleResize);
+          window.removeEventListener('orientationchange', orientationChangeHandler);
+        };
+      }, [isRotatable]); // Include isRotatable in the dependency array to react to changes
     
 
     return (
@@ -67,7 +104,20 @@ export default function Computer({showDetails, periodOfDay}) {
                 <group rotation={[-Math.PI / 2, 0, 0]} scale={1.147}>
                     <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
 
-                    <group onClick={() => handleMeshClick([-0.85, -0.272, 1.42], [0.13,-Math.PI/2,0], [0,0,0])}>
+                    <group onClick={() => {
+                        const aspectRatio = window.innerWidth / window.innerHeight;
+                        let positionArray = [0, 0, 0];
+
+                        if (aspectRatio > 1.62) {
+                            positionArray = [-0.84, -0.272, 1.42];
+                        } else if (aspectRatio > 0.6666) {
+                            positionArray = [-0.83, -0.1, 1];
+                        } else {
+                            positionArray = [-0.85, 0, 0.5];
+                        }
+
+                        handleMeshClick(positionArray, [0.13, -Math.PI/2, 0], [0, 0, 0]);
+                    }}>
 
                         {/* desk */}
                         <mesh
