@@ -26,7 +26,7 @@ const Loader = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setLoaderText('Building My Room ...');
-    }, 2000);
+    }, 2050);
 
     return () => clearTimeout(timeoutId);
   }, []);
