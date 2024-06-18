@@ -95,7 +95,7 @@ const Home = () => {
       {/* my details and time component */}
       {!isLoading && showValue && (
         <div className="details-container absolute bottom-0 right-0 m-4 z-10 flex items-end" style={{
-          transform: `scale(${window.innerWidth > window.innerHeight ? window.innerWidth / 1920 : window.innerHeight / 1080})`,
+          transform: `scale(${window.innerWidth > window.innerHeight ? `${Math.max(0.6, window.innerWidth / 1920)}` : window.innerHeight / 1080})`,
           transformOrigin: 'bottom right'
         }}>
           {/* Content */}
@@ -153,7 +153,7 @@ const Home = () => {
         <div
           className="pulsing-text absolute top-0 left-0 flex justify-start items-start z-10"
           style={{
-            transform: `scale(${window.innerWidth > window.innerHeight ? window.innerWidth / 1920 : window.innerHeight / 1080})`,
+            transform: `scale(${window.innerWidth > window.innerHeight ? `${Math.max(0.6, window.innerWidth / 1920)}` : window.innerHeight / 1080})`,
             transformOrigin: 'top left',
             color: periodOfDay === 'night' ? 'white' : 'black',
           }}
