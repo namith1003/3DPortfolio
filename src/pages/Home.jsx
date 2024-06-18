@@ -94,7 +94,10 @@ const Home = () => {
 
       {/* my details and time component */}
       {!isLoading && showValue && (
-        <div className="details-container absolute bottom-0 right-0 m-4 z-10 flex items-end">
+        <div className="details-container absolute bottom-0 right-0 m-4 z-10 flex items-end" style={{
+          transform: `scale(${window.innerWidth > window.innerHeight ? window.innerWidth / 1920 : window.innerHeight / 1080})`,
+          transformOrigin: 'bottom right'
+        }}>
           {/* Content */}
           <div className="space-y-2">
             <div className="bg-black text-white p-2 text-3xl text-center" style={{ fontFamily: 'retro' }}>Namith Nimlaka</div>
@@ -147,10 +150,15 @@ const Home = () => {
       )}
       {/* click pc text component */}
       {!isLoading && showValue && (
-        <div className="pulsing-text absolute top-0 left-0 flex justify-start items-start z-10">
-          <div className={periodOfDay === 'night' ? 'text-white' : 'text-black'}>
-            Click the PC...
-          </div>
+        <div
+          className="pulsing-text absolute top-0 left-0 flex justify-start items-start z-10"
+          style={{
+            transform: `scale(${window.innerWidth > window.innerHeight ? window.innerWidth / 1920 : window.innerHeight / 1080})`,
+            transformOrigin: 'top left',
+            color: periodOfDay === 'night' ? 'white' : 'black',
+          }}
+        >
+          Click the PC...
         </div>
       )}
     </section>

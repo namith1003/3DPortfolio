@@ -38,32 +38,6 @@
     touch-action: none;
   }
   
-  /* Responsive styling */
-  
-  /* Landscape mode */
-  @media (orientation: landscape) {
-    .details-container {
-      transform: scale(calc(100vw / 1920));
-      transform-origin: top right;
-    }
-  
-    .pulsing-text {
-      transform: scale(calc(100vw / 1920));
-      transform-origin: top left;
-    }
-  }
-  
-  /* Portrait mode */
-  @media (orientation: portrait) {
-    .details-container {
-      transform: scale(calc(100vh/ 1080));
-    }
-  
-    .pulsing-text {
-      transform: scale(calc(100vh / 1080));
-    }
-  }
-  
   /* Mobile adjustments to avoid going under home/back buttons */
   @media (max-width: 768px) {
     .details-container {
