@@ -135,7 +135,7 @@ const Home = () => {
               </div>
             </div>
             <div className="flex space-x-2">
-              <div className="bg-black text-white p-3 text-lg text-center" style={{ fontFamily: 'retro' }}>Software Engineer</div>
+              <div className="bg-black text-white p-2 text-lg text-center" style={{ fontFamily: 'retro' }}>Software Engineer</div>
               <div className="flex flex-row items-center">
                 <a href="https://github.com/namith1003" target="_blank" rel="noopener noreferrer">
                   <img src={githubLogo} alt="github" className="w-9 h-9" />
@@ -151,7 +151,7 @@ const Home = () => {
       {/* click pc text component */}
       {!isLoading && showValue && (
         <div
-          className="pulsing-text absolute top-0 left-0 flex justify-start items-start z-10"
+          className="pulsing-text absolute top-0 left-0 justify-start items-start z-10"
           style={{
             transform: `scale(${window.innerWidth > window.innerHeight ? `${Math.max(0.6, window.innerWidth / 1920)}` : window.innerHeight / 1080})`,
             transformOrigin: 'top left',
