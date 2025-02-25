@@ -125,7 +125,7 @@ const Home = () => {
                   <option value="park">Morning</option>
                   <option value="warehouse">Evening</option>
                   <option value="dawn">Dusk</option>
-                  <option value="night">Night</option>
+                  <option value="night">Nights</option>
                 </select>
                 <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                   <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
