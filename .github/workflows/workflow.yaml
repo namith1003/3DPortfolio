@@ -3,21 +3,37 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch: # Allow manual triggering
+
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3 # Updated to v3
+      
+      - uses: actions/setup-node@v3 # Updated to v3
+        with:
+          node-version: '18'
+          cache: 'npm' # Built-in npm caching
+          
       - name: Install dependencies
-        run: npm install
+        run: npm ci # Using ci instead of install
+        
       - name: Build
         run: npm run build
+        
       - name: Set AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
+          
       - name: Deploy to S3
-        run: aws s3 sync ./dist/. s3://niveor.com
+        run: |
+          aws s3 sync ./build s3://niveor.com --delete
+          
+      - name: Invalidate CloudFront (if using CDN)
+        if: false # Disabled by default - enable if you use CloudFront
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
