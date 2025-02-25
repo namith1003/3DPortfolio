@@ -31,7 +31,7 @@ jobs:
           
       - name: Deploy to S3
         run: |
-          aws s3 sync ./build s3://niveor.com --delete
+          aws s3 sync ./dist s3://niveor.com --delete
           
       - name: Invalidate CloudFront (if using CDN)
         if: false # Disabled by default - enable if you use CloudFront
